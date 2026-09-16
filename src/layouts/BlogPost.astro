@@ -36,7 +36,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   image={heroImage?.src}
   ogType="article"
   noindex={noindex}
-  canonical={canonicalUrl}
+  canonicalUrl={canonicalUrl}
 >
   <Fragment slot="head">
     <JsonLd
@@ -126,7 +126,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
     )}
 
     <!-- MDX Content via tailwindcss/typography -->
-    <div class="prose prose-zinc prose-lg mx-auto dark:prose-invert prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-[var(--text-primary)] prose-a:text-[var(--color-primary-500)] hover:prose-a:text-[var(--color-primary-600)] prose-img:rounded-xl prose-img:border prose-img:border-[var(--border)]">
+    <div class="prose prose-lg mx-auto prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-[var(--text-primary)] prose-a:text-[var(--color-primary-500)] hover:prose-a:text-[var(--color-primary-600)] prose-img:rounded-xl prose-img:border prose-img:border-[var(--border)]">
       <slot />
     </div>
 
