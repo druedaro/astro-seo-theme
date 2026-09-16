@@ -20,12 +20,7 @@ const {
 
 // Generate FAQPage schema data
 const faqSchemaData = {
-  mainEntity: faqs.map((faq) => ({
-    name: faq.question,
-    acceptedAnswer: {
-      text: faq.answer
-    }
-  }))
+  items: faqs
 };
 ---
 
