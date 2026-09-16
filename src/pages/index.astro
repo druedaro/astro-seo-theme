@@ -1,11 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+
+const siteUrl = Astro.site?.toString() ?? 'https://astro-seo-theme.vercel.app';
 ---
 
 <BaseLayout
   title="The Ultimate B2B/SaaS Marketing Theme"
   description="Open-source Astro theme with advanced SEO, GEO & AEO optimization. Built for SaaS companies and B2B marketing websites. Lighthouse 100/100."
 >
+  <Fragment slot="head">
+    <JsonLd
+      type="WebSite"
+      data={{
+        name: 'Astro SEO Theme',
+        url: siteUrl,
+        description: 'The ultimate open-source Astro theme for B2B/SaaS marketing websites.',
+        searchUrl: `${siteUrl}/search`,
+      }}
+    />
+    <JsonLd
+      type="Organization"
+      data={{
+        name: 'Astro SEO Theme',
+        url: siteUrl,
+        description: 'Open-source Astro theme with advanced SEO optimization for B2B and SaaS websites.',
+      }}
+    />
+  </Fragment>
   <section class="flex min-h-[80vh] flex-col items-center justify-center px-6 text-center">
     <p class="mb-4 text-sm font-medium uppercase tracking-widest text-[var(--text-tertiary)]">
       Open Source · SEO-First · B2B Ready
