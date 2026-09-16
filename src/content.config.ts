@@ -1,11 +1,12 @@
 import { defineCollection, z } from 'astro:content';
+import { glob, file } from 'astro/loaders';
 
 /**
  * Blog Collection
  * Posts in MDX with full SEO frontmatter for GEO/AEO optimization.
  */
 const blog = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -28,7 +29,7 @@ const blog = defineCollection({
  * B2B success stories with structured data for rich results.
  */
 const caseStudies = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/case-studies" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -63,7 +64,7 @@ const caseStudies = defineCollection({
  * Author profiles for E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness).
  */
 const authors = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: "**/*.json", base: "./src/content/authors" }),
   schema: ({ image }) =>
     z.object({
       name: z.string(),
