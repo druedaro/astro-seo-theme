@@ -20,10 +20,18 @@ export type Lang = keyof typeof languages;
 export const ui = {
   en: {
     // Navigation
+    'nav.product': 'Product',
+    'nav.resources': 'Resources',
     'nav.features': 'Features',
+    'nav.featuresDesc': 'Learn about our core capabilities.',
     'nav.pricing': 'Pricing',
+    'nav.pricingDesc': 'Simple and transparent pricing.',
     'nav.blog': 'Blog',
+    'nav.blogDesc': 'Latest news and industry insights.',
     'nav.caseStudies': 'Case Studies',
+    'nav.caseStudiesDesc': 'See how other companies succeed.',
+    'nav.docs': 'Documentation',
+    'nav.docsDesc': 'Guides, tutorials, and API reference.',
     'nav.about': 'About',
     'nav.contact': 'Contact',
 
@@ -82,10 +90,18 @@ export const ui = {
   },
   es: {
     // Navigation
+    'nav.product': 'Producto',
+    'nav.resources': 'Recursos',
     'nav.features': 'Características',
+    'nav.featuresDesc': 'Descubre nuestras funciones principales.',
     'nav.pricing': 'Precios',
+    'nav.pricingDesc': 'Planes simples y transparentes.',
     'nav.blog': 'Blog',
+    'nav.blogDesc': 'Últimas noticias y artículos.',
     'nav.caseStudies': 'Casos de Éxito',
+    'nav.caseStudiesDesc': 'Mira cómo otras empresas tienen éxito.',
+    'nav.docs': 'Documentación',
+    'nav.docsDesc': 'Guías, tutoriales y referencia.',
     'nav.about': 'Nosotros',
     'nav.contact': 'Contacto',
 
