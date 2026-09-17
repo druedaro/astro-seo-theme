@@ -45,6 +45,7 @@ export interface OrganizationData {
   logo?: string;
   description?: string;
   sameAs?: string[];
+  contactPoint?: Record<string, unknown>;
 }
 
 export interface PersonData {
@@ -138,6 +139,7 @@ function buildSchema(type: SchemaType, data: any): Record<string, unknown> {
       if (d.logo) schema.logo = { '@type': 'ImageObject', url: d.logo };
       if (d.description) schema.description = d.description;
       if (d.sameAs?.length) schema.sameAs = d.sameAs;
+      if (d.contactPoint) schema.contactPoint = d.contactPoint;
       return schema;
     }
 
