@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getLangFromUrl, useTranslations, getAlternateLocales } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -14,6 +15,8 @@ interface Props {
   lang?: string;
 }
 
+const detectedLang = getLangFromUrl(Astro.url);
+
 const {
   title,
   description,
@@ -24,13 +27,15 @@ const {
   publishedTime,
   modifiedTime,
   author,
-  lang = 'en',
+  lang = detectedLang,
 } = Astro.props;
 
-const siteUrl = Astro.site?.toString() ?? 'https://astro-seo-theme.vercel.app';
+const t = useTranslations(detectedLang);
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://astro-seo-theme.vercel.app';
 const currentUrl = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL(image, siteUrl).toString();
 const siteName = 'Astro SEO Theme';
+const alternateLocales = getAlternateLocales(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -49,6 +54,12 @@ const siteName = 'Astro SEO Theme';
 
     <!-- Canonical URL -->
     <link rel="canonical" href={currentUrl} />
+
+    <!-- Hreflang tags for i18n -->
+    {alternateLocales.map(({ lang: altLang, href }) => (
+      <link rel="alternate" hreflang={altLang === 'en' ? 'en-US' : 'es-ES'} href={new URL(href, siteUrl).toString()} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(alternateLocales[0].href, siteUrl).toString()} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />
@@ -110,7 +121,7 @@ const siteName = 'Astro SEO Theme';
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-primary-600 focus:px-4 focus:py-2 focus:text-white"
     >
-      Skip to main content
+      {t('skipToContent')}
     </a>
 
     <slot name="header" />

@@ -6,17 +6,23 @@
  * - Sticky header with backdrop blur
  * - Responsive nav (mobile hamburger menu)
  * - Dark mode toggle (React Island)
+ * - Language picker (i18n)
  * - Active link highlighting
  */
 import DarkModeToggle from '../ui/DarkModeToggle.tsx';
+import LanguagePicker from '../ui/LanguagePicker.astro';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const navLinks = [
-  { label: 'Features', href: '/#features' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Case Studies', href: '/case-studies' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: t('nav.features'), href: getLocalizedPath(lang, '/#features') },
+  { label: t('nav.pricing'), href: getLocalizedPath(lang, '/pricing') },
+  { label: t('nav.blog'), href: getLocalizedPath(lang, '/blog') },
+  { label: t('nav.caseStudies'), href: getLocalizedPath(lang, '/case-studies') },
+  { label: t('nav.about'), href: getLocalizedPath(lang, '/about') },
+  { label: t('nav.contact'), href: getLocalizedPath(lang, '/contact') },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -60,8 +66,9 @@ const currentPath = Astro.url.pathname;
       ))}
     </nav>
 
-    <!-- Right side: CTA + Dark mode -->
+    <!-- Right side: CTA + Dark mode + Language -->
     <div class="flex items-center gap-3">
+      <LanguagePicker />
       <DarkModeToggle client:load />
       <a
         href="https://github.com/druedaro/astro-seo-theme"

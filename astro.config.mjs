@@ -11,6 +11,14 @@ export default defineConfig({
   site: 'https://astro-seo-theme.vercel.app',
   output: 'static',
 
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
