@@ -12,8 +12,9 @@ const siteUrl = Astro.site?.toString() ?? 'https://astro-seo-theme.vercel.app';
 ---
 
 <BaseLayout
-  title="The Ultimate B2B/SaaS Marketing Theme"
+  title="Astro SEO Theme - The Ultimate B2B/SaaS Marketing Theme"
   description="Open-source Astro theme with advanced SEO, GEO & AEO optimization. Built for SaaS companies and B2B marketing websites. Lighthouse 100/100."
+  appendSiteName={false}
 >
   <Fragment slot="head">
     <JsonLd
