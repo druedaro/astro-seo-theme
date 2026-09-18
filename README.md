@@ -1,5 +1,8 @@
 <div align="center">
   <h1>Astro SEO Theme</h1>
+  
+  <img src="public/social-preview.jpg" alt="Astro SEO Theme Cover" width="100%" />
+
   <p><strong>The ultimate open-source SEO theme for Astro, designed for B2B SaaS and Enterprise.</strong></p>
   
   [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
