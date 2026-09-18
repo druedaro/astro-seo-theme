@@ -1,10 +1,13 @@
-# 🚀 Astro SEO theme — The Editorial SEO-First Blog Template
+# Plan de Implementación: El Astro SEO Theme Definitivo (Open-Source)
 
-Un template de blog open-source para Astro, diseñado desde cero con las mejores prácticas de SEO 2026 (incluyendo GEO y AEO). Objetivo: ser aceptado en el [directorio oficial de Astro](https://astro.build/themes/) y en [Vercel Templates](https://vercel.com/templates).
+Este documento define la arquitectura y características para desarrollar el tema de Astro definitivo enfocado en el nicho B2B (Sitios web de Marketing para SaaS y portales Corporativos). 
+
+> [!TIP]
+> **Estrategia Elegida:** Todo el desarrollo será **100% Open-Source y Gratuito**. El objetivo es crear la herramienta definitiva que la comunidad adopte como el estándar absoluto para webs de alto rendimiento y SEO técnico impecable. No habrá barreras de pago.
+
+---
 
 ## Análisis Competitivo
-
-He revisado el mercado de templates de Astro. Esto es lo que hay:
 
 | Template | Enfoque | SEO Level | Precio |
 |---|---|---|---|
@@ -15,14 +18,16 @@ He revisado el mercado de templates de Astro. Esto es lo que hay:
 
 ### ¿Dónde está el hueco?
 
-**Ningún template gratuito se posiciona como "el template SEO-first".** Todos tienen meta tags básicos, pero ninguno:
-- Genera **JSON-LD automático** por tipo de contenido (Article, BlogPosting, FAQ, HowTo, BreadcrumbList)
+**Ningún template gratuito se posiciona como "el template SEO-first para B2B/SaaS".** Todos tienen meta tags básicos, pero ninguno:
+- Genera **JSON-LD automático** por tipo de contenido (Article, Organization, FAQ, Review, BreadcrumbList)
+- Incluye componentes de marketing B2B listos para usar (Mega-menús, Bento Grids, Pricing Tables)
 - Implementa señales de **GEO** (Generative Engine Optimization) para IA
 - Implementa señales de **AEO** (Answer Engine Optimization) para Featured Snippets
-- Incluye un **SEO Checklist** integrado en el README que eduque al usuario
 - Tiene un **100/100 en Lighthouse** como bandera de marketing
 
-Esa es tu ventaja competitiva absoluta. Un template que no solo sea bonito, sino que sea **la referencia de SEO técnico para Astro**.
+Esa es nuestra ventaja competitiva absoluta. Un template que no solo sea bonito, sino que sea **la referencia de SEO técnico y marketing B2B para Astro**.
+
+---
 
 ## Requisitos de Astro para Aceptar Themes
 
@@ -38,20 +43,27 @@ Para maximizar las probabilidades de aceptación y destacar:
 
 ---
 
-## Propuesta de Arquitectura
+## Arquitectura y Stack Tecnológico
 
-### Stack Tecnológico
-- **Astro v7** (última versión estable)
-- **Tailwind CSS v4** (con `@tailwindcss/typography` para estilar Markdown/MDX)
-- **MDX** para los posts del blog (permite usar componentes React dentro del Markdown)
-- **TypeScript** (tipado estricto en las colecciones de contenido)
-- **View Transitions** (animaciones nativas de Astro entre páginas)
+*   **Core:** Astro (versión más reciente, v7+) con SSG (Static Site Generation) por defecto para máximo rendimiento.
+*   **Estilos:** **Tailwind CSS v4** (con `@tailwindcss/typography` para estilar Markdown/MDX). Garantiza facilidad de personalización y es el estándar de facto.
+*   **Interactividad UI:** **React** (utilizado solo cuando sea necesario mediante *Astro Islands* para no penalizar la carga).
+*   **Librerías de Componentes (React):** 
+    *   **Radix UI / Headless UI:** Para componentes complejos y accesibles (modales, menús desplegables, acordeones) sin atarnos a estilos predefinidos.
+    *   **Framer Motion:** Para animaciones fluidas y modernas en la UI interactiva.
+*   **Contenido:** Astro Content Collections (MDX) para manejar blogs, casos de estudio y documentación de forma nativa sin depender obligatoriamente de un CMS externo.
+*   **TypeScript:** Tipado estricto en las colecciones de contenido y componentes.
+*   **View Transitions:** Animaciones nativas de Astro entre páginas.
 
-### Estructura de Páginas
+---
+
+## Estructura del Proyecto
+
 ```
 src/
 ├── content/
 │   ├── blog/           # Posts en MDX con frontmatter tipado
+│   ├── case-studies/   # Casos de éxito de clientes (B2B)
 │   └── authors/        # Datos de autores (E-E-A-T)
 ├── components/
 │   ├── seo/            # ★ Componentes SEO reutilizables
@@ -59,43 +71,59 @@ src/
 │   │   ├── OpenGraph.astro      # Meta OG/Twitter dinámicos
 │   │   ├── Breadcrumbs.astro    # Breadcrumbs con Schema
 │   │   └── FaqSchema.astro      # FAQ Schema automático
-│   ├── ui/             # Componentes visuales
+│   ├── marketing/      # ★ Componentes B2B/SaaS
+│   │   ├── MegaMenu.tsx         # Mega-menú (React Island)
+│   │   ├── HeroSection.astro    # Hero sections dinámicos
+│   │   ├── LogoCloud.astro      # Logos de clientes
+│   │   ├── Testimonials.astro   # Testimonios
+│   │   ├── BentoGrid.astro      # Feature Bento Grids
+│   │   ├── PricingTable.tsx     # Pricing Tables (React Island)
+│   │   └── CaseStudyCard.astro  # Tarjeta de caso de éxito
+│   ├── ui/             # Componentes visuales genéricos
+│   │   ├── DarkModeToggle.tsx   # Switch dark/light mode (React Island)
+│   │   └── ...
 │   └── layout/         # Layouts base
 ├── layouts/
-│   ├── BaseLayout.astro    # Layout raíz con SEO head
-│   ├── BlogPost.astro      # Layout de post individual
-│   └── BlogList.astro      # Layout de listado
+│   ├── BaseLayout.astro     # Layout raíz con SEO head
+│   ├── BlogPost.astro       # Layout de post individual
+│   ├── BlogList.astro       # Layout de listado
+│   ├── LandingPage.astro    # Layout para landing pages SaaS
+│   └── CaseStudy.astro     # Layout para casos de estudio
 ├── pages/
-│   ├── index.astro         # Homepage
+│   ├── index.astro          # Homepage (Landing SaaS)
 │   ├── blog/
-│   │   ├── index.astro     # Listado de posts con paginación
-│   │   └── [...slug].astro # Post individual (SSG)
-│   ├── about.astro         # Página About (E-E-A-T)
-│   ├── 404.astro           # Página 404 personalizada
-│   └── rss.xml.ts          # Feed RSS generado automáticamente
+│   │   ├── index.astro      # Listado de posts con paginación
+│   │   └── [...slug].astro  # Post individual (SSG)
+│   ├── pricing.astro        # Página de precios
+│   ├── case-studies/
+│   │   ├── index.astro      # Listado de casos de éxito
+│   │   └── [...slug].astro  # Caso individual
+│   ├── about.astro          # Página About (E-E-A-T)
+│   ├── 404.astro            # Página 404 personalizada
+│   └── rss.xml.ts           # Feed RSS generado automáticamente
+├── i18n/                    # Configuración multi-idioma
+│   ├── en.json
+│   └── es.json
 └── styles/
-    └── global.css          # Estilos base + Typography
+    └── global.css           # Estilos base + Typography
 ```
 
 ---
 
-## Killer Features SEO/GEO/AEO
+## Características: El "Ultimate Theme"
 
-### 1. JSON-LD Automático (SEO + GEO)
-Un componente `<JsonLd />` que detecta el tipo de página y genera el schema correspondiente:
+Al ser un tema unificado y definitivo, incluiremos todo el arsenal desde el primer día:
 
-```astro
-<!-- En BlogPost.astro — se genera automáticamente -->
-<JsonLd
-  type="BlogPosting"
-  title={post.data.title}
-  description={post.data.description}
-  author={post.data.author}
-  datePublished={post.data.pubDate}
-  dateModified={post.data.updatedDate}
-  image={post.data.heroImage}
-/>
-```
+### 1. SEO Técnico Avanzado (El punto fuerte)
+
+*   Generación automática de `sitemap.xml` y `robots.txt`.
+*   Meta etiquetas dinámicas completas (Title, Description, Canonical URL, hreflang).
+*   **Generación automática de imágenes Open Graph (OG Images)** generadas dinámicamente en el build (via `astro-og-canvas`).
+*   **Marcado Schema.org (JSON-LD) inyectado automáticamente** para Artículos, Organizaciones, FAQs, y Reseñas.
+*   Integración y optimización profunda de fuentes (Web fonts) para evitar Cumulative Layout Shift (CLS).
+*   Soporte robusto para **Multi-idioma (i18n)** utilizando las capacidades de enrutamiento de Astro, con subdirectorios (`/en/`, `/es/`) y tags `hreflang` automáticos.
+*   RSS Feed (`/rss.xml`) autogenerado.
+*   Imágenes optimizadas con `<Image />` de Astro (WebP/AVIF automático).
 
 **Tipos de Schema soportados:**
 - `WebSite` (homepage, con `SearchAction` para sitelinks)
@@ -103,57 +131,73 @@ Un componente `<JsonLd />` que detecta el tipo de página y genera el schema cor
 - `BreadcrumbList` (navegación jerárquica)
 - `Person` + `Organization` (E-E-A-T para autores)
 - `FAQPage` (generado automáticamente si el post contiene preguntas en los H2/H3)
+- `Review` (para testimonios y reseñas de producto)
 
-### 2. Señales GEO para Motores de IA
-- **Factual density:** El template de ejemplo incluirá posts con datos específicos, estadísticas y fuentes citadas (para enseñar al usuario cómo escribir contenido que las IAs quieran citar)
-- **Entity clarity:** Schema `Organization` completo con `sameAs` (links a redes sociales) para reforzar el "knowledge graph"
-- **Author authority:** Colección de contenido `authors/` con campos de credenciales, bio y links — los posts enlazan automáticamente al perfil del autor
+#### Señales GEO para Motores de IA
+- **Factual density:** Contenido de ejemplo con datos específicos, estadísticas y fuentes citadas
+- **Entity clarity:** Schema `Organization` completo con `sameAs` (links a redes sociales)
+- **Author authority:** Colección de contenido `authors/` con campos de credenciales, bio y links
 
-### 3. Señales AEO para Featured Snippets
-- **Headings con formato pregunta:** El template de post animará (en la documentación) a usar H2 tipo "¿Qué es X?" o "¿Cómo funciona Y?"
-- **Párrafos de definición:** CSS que resalta visualmente el primer párrafo después de un H2-pregunta (40-60 palabras, la longitud óptima para snippets)
-- **FAQ Schema automático:** Si un post usa el componente `<FAQ>` de MDX, se genera `FAQPage` schema automáticamente
+#### Señales AEO para Featured Snippets
+- **Headings con formato pregunta:** H2 tipo "¿Qué es X?" o "¿Cómo funciona Y?"
+- **Párrafos de definición:** CSS que resalta el primer párrafo después de un H2-pregunta (40-60 palabras)
+- **FAQ Schema automático:** Componente `<FAQ>` en MDX que genera `FAQPage` schema automáticamente
 
-### 4. SEO Técnico Perfecto
-- `@astrojs/sitemap` preconfigurado con `changefreq` y `priority`
-- `robots.txt` generado dinámicamente
-- RSS Feed (`/rss.xml`) autogenerado
-- Canonical URLs automáticas
-- Imágenes optimizadas con `<Image />` de Astro (WebP/AVIF automático)
-- Preconnect/preload de fuentes críticas
-- **Lighthouse 100/100** en las 4 categorías
+### 2. Componentes de Marketing B2B (SaaS / Corporativo)
 
-### 5. UX/UI Premium
-- **Dark mode** con toggle persistente (localStorage)
-- **View Transitions** entre páginas (animación nativa de Astro)
-- **Tipografía**: Inter (o similar de Google Fonts) con `@tailwindcss/typography`
-- **Tabla de contenidos (TOC)** autogenerada en los posts con scroll spy
-- **Tiempo de lectura** calculado automáticamente
-- **Paginación** del blog con diseño limpio
-- **Responsive** perfecto (mobile-first)
+*   **Mega-menús de Navegación:** Diseñados para corporaciones complejas. Implementados como React Island con Radix UI para accesibilidad total.
+*   **Hero Sections Dinámicos:** Optimizados para LCP rápido, con soporte para videos ligeros o gráficos interactivos. Animaciones de entrada con Framer Motion.
+*   **Social Proof & Trust:** Componentes de logos de clientes (LogoCloud), testimonios animados y casos de éxito.
+*   **Feature Bento Grids:** La tendencia actual de diseño para mostrar características del software de forma visual.
+*   **Pricing Tables Inteligentes:** Tablas comparativas (Mensual/Anual) accesibles y fáciles de configurar por datos (JSON/Markdown). React Island con toggle animado.
+*   **Modo Oscuro (Dark Mode):** Soporte nativo de primera clase, con switch persistente (localStorage) y prevención de parpadeo (FOUC).
+*   **View Transitions:** Animaciones nativas de Astro entre páginas para una experiencia SPA-like.
+
+---
+
+## Análisis de Packages de Terceros
+
+### 🟢 Aprobados (Altamente Recomendables)
+1. **`astro-seo-meta`**: Paquete robusto para meta tags estándar (title, descripción, OG, twitter cards). *(Alternativa: `astro-seo` de Jonas).*
+2. **`astro-seo-schema`**: Base sólida para Schema.org. Evaluaremos si permite inyectar campos raw para señales GEO/AEO o construiremos nuestro propio `<JsonLd>`.
+3. **`astro-gtm`**: Google Tag Manager preconfigurado. Enorme valor para usuarios corporativos B2B.
+4. **`astro-og-canvas`**: Auto-generación de imágenes OG dinámicas con código. Killer feature para compartir en redes.
+5. **`@playform/compress`**: Minificación agresiva de HTML, CSS, SVG y JS post-build. El toque final para Core Web Vitals.
+
+### 🟡 Útiles, con consideraciones
+1. **`astro-ui-avatars`**: Fallback para autores sin foto. Para E-E-A-T, priorizar fotos reales.
+2. **`astro-svg-loaders`**: Toque premium durante transiciones, pero usar con moderación en SSG.
+
+### 🔴 Descartados
+1. **`astro-purgecss`**: Tailwind CSS v4 ya hace purging por defecto. Conflictos potenciales.
+2. **`astro-useragent`**: Inútil en SSG. Responsive siempre por CSS (`@media queries`).
 
 ---
 
 ## Contenido de Ejemplo
 
 > [!TIP]
-> El contenido de ejemplo es **crítico** para que el template tenga buena pinta en la demo y para que los usuarios entiendan cómo usar las features de SEO.
+> El contenido de ejemplo es **crítico** para que el template tenga buena pinta en la demo y para que los usuarios entiendan cómo usar las features. Será contenido real, no lorem ipsum.
 
-Posts de ejemplo (3-4 artículos):
-1. **"Getting Started with AstroPress"** — Tutorial que explica las features SEO del template
-2. **"SEO Best Practices for Your Blog in 2026"** — Artículo largo con Schema FAQ de ejemplo
+### Blog Posts (3-4 artículos)
+1. **"Getting Started with Astro SEO Theme"** — Tutorial de las features SEO del template
+2. **"SEO Best Practices for Your SaaS in 2026"** — Artículo largo con Schema FAQ de ejemplo
 3. **"How to Optimize for AI Search Engines (GEO)"** — Artículo educativo con estadísticas
 
-Cada post tendrá un frontmatter completo:
+### Casos de Estudio (2 ejemplos)
+1. **"How Acme Corp Increased Organic Traffic by 300%"** — Caso de éxito B2B ficticio
+2. **"Enterprise Migration to Astro: A Case Study"** — Migración técnica
+
+### Frontmatter tipo:
 ```yaml
 ---
-title: "Getting Started with AstroPress"
-description: "Learn how to set up your SEO-optimized blog with AstroPress in under 5 minutes."
+title: "Getting Started with Astro SEO Theme"
+description: "Learn how to set up your SEO-optimized SaaS website in under 5 minutes."
 pubDate: 2026-09-10
 updatedDate: 2026-09-10
 heroImage: "./images/getting-started.webp"
 author: "david-rueda"
-tags: ["astro", "seo", "tutorial"]
+tags: ["astro", "seo", "saas", "tutorial"]
 draft: false
 ---
 ```
@@ -164,8 +208,8 @@ draft: false
 
 ### Canal 1: Astro Themes Directory (Gratuito)
 - Subir vía `portal.astro.build/themes/submit`
-- Categoría: Blog
-- Tags: `seo`, `blog`, `tailwind`, `mdx`, `typescript`
+- Categoría: Marketing / SaaS
+- Tags: `seo`, `saas`, `b2b`, `tailwind`, `react`, `mdx`, `typescript`
 
 ### Canal 2: Vercel Templates
 - Botón "Deploy to Vercel" en el README
@@ -178,51 +222,34 @@ draft: false
 
 ### Canal 4: Comunidades
 - Post en el Discord de Astro
-- Post en Reddit (r/webdev, r/astro)
-- Artículo en tu blog personal (o DEV.to) explicando las decisiones técnicas de SEO
+- Post en Reddit (r/webdev, r/astro, r/SaaS)
+- Artículo en DEV.to explicando las decisiones técnicas
 
 ---
 
 ## Decisiones de Arquitectura Tomadas
 
-- **Nombre:** Astro SEO theme
-- **Idioma Principal:** Inglés (Inglés global para maximizar visibilidad en Vercel/GitHub).
-- **Estilo Visual:** Editorial (Tipografía elegante, mucho espacio en blanco, diseño tipo periódico digital premium o Medium/Substack, perfecto para lectura larga y retención de usuarios).
-- **i18n (Internacionalización):** Se incluirá soporte nativo de Astro para múltiples idiomas (ej. `en` y `es`). Esto es una *killer feature* enorme para un template SEO. Se configurarán subdirectorios (`/en/blog/` y `/es/blog/`) con tags `hreflang` automáticos.
-
-## Análisis de Packages de Terceros
-
-Has propuesto una lista muy interesante de paquetes de `codiume/orbit`. Aquí tienes el análisis estratégico de cuáles usar en un template que aspira al 100/100 en Lighthouse y a ser la referencia en SEO:
-
-### 🟢 Aprobados (Altamente Recomendables)
-1. **`astro-seo-meta`**: Usar un paquete robusto para los meta tags estándar (title, descripción, open graph, twitter cards) nos ahorra reinventar la rueda y asegura que no falte ninguna etiqueta esencial. *(Alternativa sólida: el popular `astro-seo` de Jonas).*
-2. **`astro-seo-schema`**: Muy útil como base. Sin embargo, dado que queremos añadir señales **GEO/AEO** muy específicas (como `SpeakableSpecification` o enlazar entidades), usaremos este paquete si nos permite inyectar campos raw, o construiremos nuestro propio componente `<JsonLd>` si necesitamos más libertad para la IA.
-3. **`astro-gtm`**: Ideal. Un blog enfocado a SEO/Marketing debe tener Google Tag Manager preconfigurado. Aporta muchísimo valor a usuarios corporativos.
-
-### 🟡 Útiles, pero con consideraciones
-1. **`astro-ui-avatars`**: Está bien como "fallback" (plan B) si un autor no tiene foto. Pero ojo: para el **E-E-A-T** (Experiencia, Expertise, Autoridad, Confianza), Google y las IAs valoran infinitamente más fotos de perfil reales de personas. Lo usaremos solo como *placeholder*.
-2. **`astro-svg-loaders`**: Bien para dar un toque premium durante transiciones pesadas, pero al ser un sitio estático (SSG), la carga debería ser instantánea. Lo usaremos con moderación.
-
-### 🔴 Descartados (No recomendables para este proyecto)
-1. **`astro-purgecss`**: ¡No lo necesitas! Tailwind CSS (especialmente v4 y su motor JIT) ya hace *purging* (eliminación de CSS no usado) por defecto durante el proceso de build. Añadir PurgeCSS encima de Tailwind puede causar conflictos y romper estilos dinámicos innecesariamente.
-2. **`astro-useragent`**: Analizar el User-Agent del navegador se usa normalmente en Server-Side Rendering (SSR) para renderizar contenido distinto según si es móvil o PC. Como nuestro blog será estático (SSG) para máxima velocidad, el responsive debe hacerse siempre por CSS (`@media queries`), no por User-Agent. Afectaría negativamente a la caché y al SEO.
-
-### 🚀 Nuevos Descubrimientos (Integraciones Top 2024+)
-Tras investigar el ecosistema actual de Astro, he encontrado dos paquetes que son un **MUST** absoluto para un template SEO Premium:
-1. **`astro-og-canvas`**: ¡Esto es oro! Permite auto-generar imágenes para redes sociales (Open Graph y Twitter Cards) de forma dinámica usando código. Cuando un usuario comparta un post en Twitter/LinkedIn, se verá una imagen con el título del post y el autor generada automáticamente. Te ahorra tener que diseñar una imagen por cada post.
-2. **`@playform/compress`**: Una integración que minifica agresivamente el HTML, CSS, SVG y JavaScript resultante tras el *build*. Es el toque final mágico para exprimir hasta el último milisegundo de los Core Web Vitals.
+- **Nombre:** Astro SEO Theme
+- **Nicho:** B2B / SaaS / Corporativo
+- **Idioma Principal:** Inglés (global para maximizar visibilidad en Vercel/GitHub)
+- **i18n:** Soporte nativo de Astro para múltiples idiomas (ej. `en` y `es`) con subdirectorios y `hreflang` automáticos
+- **Estilo Visual:** Premium, moderno, con dark mode nativo. Inspiración en las mejores landing pages SaaS (Linear, Vercel, Stripe)
+- **Licencia:** MIT
 
 ---
 
 ## Verification Plan
 
-### Automated
-- `npx lighthouse` en la demo desplegada → las 4 categorías deben dar **100/100**
-- Validar Schema con [Google Rich Results Test](https://search.google.com/test/rich-results)
-- Validar RSS con [W3C Feed Validator](https://validator.w3.org/feed/)
+### Automated Tests
+- Validaciones de *Core Web Vitals* en CI (Continuous Integration) para mantener la puntuación Lighthouse de 100/100 en Performance, SEO y Accesibilidad.
+- Validaciones estrictas de TypeScript para los componentes y las Content Collections.
+- Validar Schema con [Google Rich Results Test](https://search.google.com/test/rich-results).
+- Validar RSS con [W3C Feed Validator](https://validator.w3.org/feed/).
 
-### Manual
-- Navegar la demo completa en móvil y escritorio
-- Verificar que los View Transitions funcionan sin glitches
-- Comprobar dark/light mode en todos los componentes
-- Subir al portal de Astro y a Vercel Templates
+### Manual Verification
+- Auditoría manual del marcado de datos estructurados con la herramienta Rich Results Test de Google.
+- Pruebas exhaustivas de accesibilidad (a11y) usando lectores de pantalla y navegación por teclado en los componentes interactivos de React.
+- Navegar la demo completa en móvil y escritorio.
+- Verificar que los View Transitions funcionan sin glitches.
+- Comprobar dark/light mode en todos los componentes.
+- Subir al portal de Astro y a Vercel Templates.

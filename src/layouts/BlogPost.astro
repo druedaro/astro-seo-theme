@@ -1,0 +1,155 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags, noindex, canonicalUrl } = post.data;
+
+// Fetch author data for E-E-A-T and Schema
+const author = await getEntry('authors', post.data.author);
+const authorName = author ? author.data.name : 'Astro SEO Theme';
+const authorRole = author ? author.data.role : 'Editorial Team';
+
+const siteUrl = Astro.site?.toString() ?? 'https://astro-seo-theme.vercel.app';
+const articleUrl = new URL(Astro.url.pathname, siteUrl).toString();
+
+// Formatter for dates
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={heroImage?.src}
+  ogType="article"
+  noindex={noindex}
+  canonicalUrl={canonicalUrl}
+>
+  <Fragment slot="head">
+    <JsonLd
+      type="BlogPosting"
+      data={{
+        headline: title,
+        description: description,
+        url: articleUrl,
+        datePublished: pubDate.toISOString(),
+        dateModified: updatedDate?.toISOString(),
+        image: heroImage ? new URL(heroImage.src, siteUrl).toString() : undefined,
+        author: {
+          name: authorName,
+          // url: author ? new URL(`/authors/${author.id}`, siteUrl).toString() : undefined
+        },
+        publisher: {
+          name: 'Astro SEO Theme',
+          // logo: new URL('/logo.png', siteUrl).toString()
+        }
+      }}
+    />
+  </Fragment>
+
+  <Header slot="header" />
+
+  <article class="mx-auto max-w-4xl px-6 py-12 md:py-20">
+    <!-- Breadcrumbs & Meta -->
+    <header class="mb-10 text-center md:mb-16">
+      <div class="mb-6 flex justify-center">
+        <Breadcrumbs
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Blog', href: '/blog' },
+            { label: title },
+          ]}
+        />
+      </div>
+
+      <div class="mb-4 flex flex-wrap justify-center gap-2">
+        {tags.map((tag) => (
+          <span class="rounded-full bg-[var(--color-primary-50)] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--color-primary-700)] dark:bg-[var(--color-primary-900)] dark:text-[var(--color-primary-300)]">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <h1 class="font-display text-4xl font-extrabold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
+        {title}
+      </h1>
+
+      <p class="mt-6 text-lg text-[var(--text-secondary)] md:text-xl">
+        {description}
+      </p>
+
+      <div class="mt-8 flex items-center justify-center gap-4 text-sm text-[var(--text-tertiary)]">
+        {author && author.data.avatar && (
+          <img
+            src={author.data.avatar.src}
+            alt={authorName}
+            class="h-10 w-10 rounded-full object-cover shadow-sm"
+          />
+        )}
+        <div class="text-left">
+          <p class="font-semibold text-[var(--text-primary)]">{authorName}</p>
+          <p>
+            <time datetime={pubDate.toISOString()}>
+              {dateFormatter.format(pubDate)}
+            </time>
+            {updatedDate && (
+              <span class="italic"> (Updated: {dateFormatter.format(updatedDate)})</span>
+            )}
+          </p>
+        </div>
+      </div>
+    </header>
+
+    {heroImage && (
+      <figure class="mb-12 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] shadow-sm">
+        <img
+          src={heroImage.src}
+          alt={title}
+          width={heroImage.width}
+          height={heroImage.height}
+          class="w-full object-cover"
+        />
+      </figure>
+    )}
+
+    <!-- MDX Content via tailwindcss/typography -->
+    <div class="prose prose-lg mx-auto prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-[var(--text-primary)] prose-a:text-[var(--color-primary-500)] hover:prose-a:text-[var(--color-primary-600)] prose-img:rounded-xl prose-img:border prose-img:border-[var(--border)]">
+      <slot />
+    </div>
+
+    <!-- E-E-A-T Author Box (Bottom) -->
+    {author && (
+      <aside class="mx-auto mt-16 max-w-2xl rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] p-8 shadow-sm">
+        <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+          {author.data.avatar && (
+            <img
+              src={author.data.avatar.src}
+              alt={authorName}
+              class="h-20 w-20 shrink-0 rounded-full object-cover ring-2 ring-[var(--border)]"
+            />
+          )}
+          <div>
+            <h3 class="text-lg font-bold text-[var(--text-primary)]">{authorName}</h3>
+            <p class="font-medium text-[var(--color-primary-500)]">{authorRole}</p>
+            <p class="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">{author.data.bio}</p>
+          </div>
+        </div>
+      </aside>
+    )}
+  </article>
+
+  <Footer slot="footer" />
+</BaseLayout>
