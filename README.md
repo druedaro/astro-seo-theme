@@ -111,13 +111,17 @@ This builds the site into `dist/`. Preview the result with `npm run preview`.
 
 ### Site name and SEO
 
-Everything site-wide lives in `src/layouts/BaseLayout.astro` and `src/i18n/ui.ts`. The default `siteName` is injected automatically into titles and metadata.
+Everything site-wide lives in `src/layouts/BaseLayout.astro` and `src/i18n/ui.ts`. The default `siteName` is injected automatically into titles and metadata. 
 
-Change the `site` property in `astro.config.mjs` so the sitemap and `robots.txt` point at your actual production domain.
+> [!IMPORTANT]
+> Change the `site` property in `astro.config.mjs` before going to production. If you skip this, your auto-generated sitemap and `robots.txt` will point to the wrong domain, which will severely hurt your SEO.
 
 ### Navigation and Megamenu
 
 Edit `src/components/layout/Header.astro` to modify the navigation. The theme includes a robust, CSS-only desktop megamenu and a mobile accordion menu built without heavy client-side JavaScript.
+
+<!-- RECOMENDACIÓN: Aquí es el lugar perfecto para colocar un GIF. Queda genial justo después de explicar el megamenú, tal y como hace ScrewFast -->
+<!-- ![Astro SEO Theme Demo](public/demo.gif) -->
 
 ### Pages and sections
 
@@ -147,6 +151,9 @@ Marketing pages are file-based: `src/pages/` for English, `src/pages/es/` for Sp
 ## Deployment
 
 `npm run build` produces a static site in `dist/` that any static host can serve.
+
+> [!TIP]
+> The included `vercel.json` enforces strict security headers by default. If you plan to load external scripts (like Google Analytics) or images from other domains, you will need to adjust the `Content-Security-Policy` inside that file so they aren't blocked.
 
 - **Vercel:** Import the project directly. The included `vercel.json` adds strict security headers and caching rules.
 - **Netlify / Cloudflare Pages:** Works out of the box with zero configuration required.
@@ -193,6 +200,13 @@ The `@astrojs/sitemap` integration generates the sitemap automatically at build 
 ### Security headers
 
 `vercel.json` sets `Content-Security-Policy`, `Strict-Transport-Security`, `X-Content-Type-Options`, and `X-Frame-Options` to ensure the site gets an A+ on security scanners like Mozilla Observatory.
+
+### Formatting
+
+Code formatting is enforced using [Prettier](https://prettier.io/). The project includes `prettier-plugin-astro` and `prettier-plugin-tailwindcss` to automatically format `.astro` files and logically sort all Tailwind CSS classes.
+
+> [!NOTE]
+> Run `npm run format` locally before committing to ensure all files are perfectly formatted. If you use VS Code, the workspace is already configured to format on save.
 
 ---
 
