@@ -15,28 +15,26 @@ const { title, description, caseStudies } = Astro.props;
 
 <BaseLayout title={title} description={description}>
   <Header slot="header" />
-  
+
   <main class="mx-auto max-w-7xl px-6 py-20 md:py-32">
     <header class="mx-auto max-w-3xl text-center md:mb-24">
       <h1 class="font-display text-4xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
         {title}
       </h1>
-      <p class="mt-6 text-lg text-[var(--text-secondary)] md:text-xl">
-        {description}
-      </p>
+      <p class="mt-6 text-lg text-[var(--text-secondary)] md:text-xl">{description}</p>
     </header>
 
     <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {caseStudies.map((study) => (
-        <a 
+        <a
           href={`/case-studies/${study.id}`}
           class="group flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg)] transition-all hover:shadow-lg hover:border-[var(--color-primary-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)]"
         >
           {study.data.heroImage ? (
             <div class="aspect-[16/9] w-full overflow-hidden border-b border-[var(--border)] bg-[var(--bg-secondary)]">
-              <img 
-                src={study.data.heroImage.src} 
-                alt={study.data.client} 
+              <img
+                src={study.data.heroImage.src}
+                alt={study.data.client}
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
                 width="600"
@@ -50,22 +48,22 @@ const { title, description, caseStudies } = Astro.props;
               </span>
             </div>
           )}
-          
+
           <div class="flex flex-1 flex-col p-8">
             <div class="mb-4 flex flex-wrap items-center gap-3">
               <span class="rounded-full bg-[var(--bg-secondary)] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
                 {study.data.industry}
               </span>
             </div>
-            
+
             <h3 class="mb-3 text-xl font-bold text-[var(--text-primary)] group-hover:text-[var(--color-primary-500)] transition-colors">
               {study.data.title}
             </h3>
-            
+
             <p class="line-clamp-3 text-sm text-[var(--text-secondary)] leading-relaxed">
               {study.data.description}
             </p>
-            
+
             {study.data.results && study.data.results.length > 0 && (
               <div class="mt-8 border-t border-[var(--border)] pt-6">
                 <div class="grid grid-cols-2 gap-4">

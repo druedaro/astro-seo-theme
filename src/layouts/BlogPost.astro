@@ -12,7 +12,8 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, pubDate, updatedDate, heroImage, tags, noindex, canonicalUrl } = post.data;
+const { title, description, pubDate, updatedDate, heroImage, tags, noindex, canonicalUrl } =
+  post.data;
 
 // Fetch author data for E-E-A-T and Schema
 const author = await getEntry('authors', post.data.author);
@@ -55,7 +56,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
         publisher: {
           name: 'Astro SEO Theme',
           // logo: new URL('/logo.png', siteUrl).toString()
-        }
+        },
       }}
     />
   </Fragment>
@@ -67,11 +68,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
     <header class="mb-10 text-center md:mb-16">
       <div class="mb-6 flex justify-center">
         <Breadcrumbs
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Blog', href: '/blog' },
-            { label: title },
-          ]}
+          items={[{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog' }, { label: title }]}
         />
       </div>
 
@@ -87,9 +84,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
         {title}
       </h1>
 
-      <p class="mt-6 text-lg text-[var(--text-secondary)] md:text-xl">
-        {description}
-      </p>
+      <p class="mt-6 text-lg text-[var(--text-secondary)] md:text-xl">{description}</p>
 
       <div class="mt-8 flex items-center justify-center gap-4 text-sm text-[var(--text-tertiary)]">
         {author && author.data.avatar && (
@@ -102,9 +97,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
         <div class="text-left">
           <p class="font-semibold text-[var(--text-primary)]">{authorName}</p>
           <p>
-            <time datetime={pubDate.toISOString()}>
-              {dateFormatter.format(pubDate)}
-            </time>
+            <time datetime={pubDate.toISOString()}>{dateFormatter.format(pubDate)}</time>
             {updatedDate && (
               <span class="italic"> (Updated: {dateFormatter.format(updatedDate)})</span>
             )}
@@ -144,7 +137,9 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
           <div>
             <h3 class="text-lg font-bold text-[var(--text-primary)]">{authorName}</h3>
             <p class="font-medium text-[var(--color-primary-500)]">{authorRole}</p>
-            <p class="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">{author.data.bio}</p>
+            <p class="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
+              {author.data.bio}
+            </p>
           </div>
         </div>
       </aside>

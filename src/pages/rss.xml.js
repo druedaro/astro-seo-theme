@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 export async function GET(context) {
   const blog = await getCollection('blog');
-  
+
   // Filter out drafts and sort by date
   const items = blog
     .filter((post) => !post.data.draft)

@@ -28,15 +28,13 @@ export default function DarkModeToggle() {
     <button
       onClick={toggle}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="relative flex h-9 w-9 items-center justify-center rounded-lg
-        text-[var(--text-secondary)] transition-colors
-        hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]"
+      className="relative flex h-9 w-9 items-center justify-center rounded-lg text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]"
     >
       {/* Sun icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className={`h-5 w-5 transition-all duration-300 ${
-          isDark ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'
+          isDark ? 'scale-0 rotate-90 opacity-0' : 'scale-100 rotate-0 opacity-100'
         } absolute`}
         fill="none"
         viewBox="0 0 24 24"
@@ -53,7 +51,7 @@ export default function DarkModeToggle() {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className={`h-5 w-5 transition-all duration-300 ${
-          isDark ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0'
+          isDark ? 'scale-100 rotate-0 opacity-100' : 'scale-0 -rotate-90 opacity-0'
         } absolute`}
         fill="none"
         viewBox="0 0 24 24"

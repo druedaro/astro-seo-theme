@@ -58,10 +58,7 @@ const breadcrumbSchema = {
           </svg>
         )}
         {item.href ? (
-          <a
-            href={item.href}
-            class="transition-colors hover:text-[var(--text-primary)]"
-          >
+          <a href={item.href} class="transition-colors hover:text-[var(--text-primary)]">
             {item.label}
           </a>
         ) : (
@@ -74,4 +71,4 @@ const breadcrumbSchema = {
   </ol>
 </nav>
 
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema, null, 2)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema, null, 2)}></script>

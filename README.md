@@ -1,14 +1,14 @@
 <div align="center">
   <h1>Astro SEO Theme</h1>
-  
+
   <img src="public/social-preview.jpg" alt="Astro SEO Theme Cover" width="100%" />
 
   <p><strong>The ultimate open-source SEO theme for Astro, designed for B2B SaaS and Enterprise.</strong></p>
-  
-  [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-  [![Astro](https://img.shields.io/badge/Built_with-Astro-ff5a03?logo=astro&logoColor=white)](https://astro.build/)
-  [![TailwindCSS](https://img.shields.io/badge/Styled_with-TailwindCSS_v4-38b2ac?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![Astro](https://img.shields.io/badge/Built_with-Astro-ff5a03?logo=astro&logoColor=white)](https://astro.build/)
+[![TailwindCSS](https://img.shields.io/badge/Styled_with-TailwindCSS_v4-38b2ac?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
   <br />
   <a href="https://astro-seo-theme.vercel.app">View Demo</a>
@@ -29,7 +29,7 @@ Live demo: [astro-seo-theme.vercel.app](https://astro-seo-theme.vercel.app/)
 - **100/100 Lighthouse Performance.** "Zero-JS by default" architecture using Astro Islands. Ships 0 KB of JavaScript to the client unless absolutely necessary (like the React-based dark mode toggle).
 - **Multilingual out of the box.** Complete English and Spanish implementations included. File-based routing makes it trivial to add more languages.
 - **Production-hardened.** Strict Content Security Policy (CSP) and security headers via `vercel.json`, GitHub Actions CI pipeline for type-checking and automated dependabot updates.
-- **Modern stack.** Astro 5, Tailwind CSS 4, React 19, TypeScript. 
+- **Modern stack.** Astro 5, Tailwind CSS 4, React 19, TypeScript.
 - **AI-assistant friendly.** [`AI_GUIDE.md`](AI_GUIDE.md) tells Cursor, Copilot, and Claude where things live and which conventions to follow so you can prompt your way to a customized site.
 - **MIT licensed.** 100% free to use for personal and commercial projects.
 
@@ -41,10 +41,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import HeroSection from '@/components/marketing/HeroSection.astro';
 ---
 
-<BaseLayout
-  title="Home"
-  description="The best SaaS product ever."
->
+<BaseLayout title="Home" description="The best SaaS product ever.">
   <HeroSection />
   <!-- Other components... -->
 </BaseLayout>
@@ -114,7 +111,7 @@ This builds the site into `dist/`. Preview the result with `npm run preview`.
 
 ### Site name and SEO
 
-Everything site-wide lives in `src/layouts/BaseLayout.astro` and `src/i18n/ui.ts`. The default `siteName` is injected automatically into titles and metadata. 
+Everything site-wide lives in `src/layouts/BaseLayout.astro` and `src/i18n/ui.ts`. The default `siteName` is injected automatically into titles and metadata.
 
 Change the `site` property in `astro.config.mjs` so the sitemap and `robots.txt` point at your actual production domain.
 
@@ -124,7 +121,7 @@ Edit `src/components/layout/Header.astro` to modify the navigation. The theme in
 
 ### Pages and sections
 
-Pages in `src/pages/` compose sections from `src/components/marketing/` and `src/components/seo/`. Open `src/pages/index.astro` to see the full homepage, then edit the props or remove sections you don't need. 
+Pages in `src/pages/` compose sections from `src/components/marketing/` and `src/components/seo/`. Open `src/pages/index.astro` to see the full homepage, then edit the props or remove sections you don't need.
 
 ### Blog and Case Studies
 
@@ -132,9 +129,9 @@ Content is Markdown/MDX in `src/content/blog/` and `src/content/case-studies/`. 
 
 ```mdx
 ---
-title: "How TechCorp Scaled with Us"
-description: "A deep dive into B2B growth."
-client: "TechCorp"
+title: 'How TechCorp Scaled with Us'
+description: 'A deep dive into B2B growth.'
+client: 'TechCorp'
 date: 2026-09-15
 ---
 
@@ -172,9 +169,9 @@ src/
 ├── layouts/                # BaseLayout.astro (Global Meta/SEO)
 ├── pages/                  # File-based routes; es/ for Spanish
 │   ├── index.astro         # English Home
-│   ├── blog/               
+│   ├── blog/
 │   ├── es/                 # Spanish routes
-│   └── rss.xml.js          
+│   └── rss.xml.js
 └── styles/
     └── global.css          # Tailwind v4 theme and typography vars
 ```
@@ -185,7 +182,7 @@ src/
 
 ### SEO and structured data
 
-`BaseLayout.astro` is the brain of the theme. It accepts `title`, `description`, `image`, and `articleDate` props. It automatically generates canonical URLs, Open Graph tags, Twitter cards, and `hreflang` alternate links. 
+`BaseLayout.astro` is the brain of the theme. It accepts `title`, `description`, `image`, and `articleDate` props. It automatically generates canonical URLs, Open Graph tags, Twitter cards, and `hreflang` alternate links.
 
 For structured data, the theme uses `src/components/seo/JsonLd.astro` and `FaqSchema.astro` to inject `<script type="application/ld+json">` payloads, crucial for Generative Engine Optimization (GEO).
 
@@ -202,7 +199,7 @@ The `@astrojs/sitemap` integration generates the sitemap automatically at build 
 ## Contributing
 
 - **Bugs and ideas:** open an issue.
-- **Pull requests:** welcome. 
+- **Pull requests:** welcome.
 
 See `CODE_OF_CONDUCT.md` and `CONTRIBUTING.md`.
 

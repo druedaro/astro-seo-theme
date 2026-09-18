@@ -16,14 +16,15 @@ const pricingTiers: PricingTier[] = [
       'Analítica SEO básica',
       '1.000 generaciones IA/mes',
       'Soporte comunidad',
-      'Integraciones estándar'
+      'Integraciones estándar',
     ],
     ctaText: 'Empezar gratis',
-    ctaHref: '#'
+    ctaHref: '#',
   },
   {
     name: 'Pro',
-    description: 'Funciones avanzadas para empresas SaaS en crecimiento que necesitan escala y rendimiento.',
+    description:
+      'Funciones avanzadas para empresas SaaS en crecimiento que necesitan escala y rendimiento.',
     monthlyPrice: 99,
     annualPrice: 79,
     isPopular: true,
@@ -33,14 +34,15 @@ const pricingTiers: PricingTier[] = [
       '10.000 generaciones IA/mes',
       'Soporte email prioritario',
       'Dominios personalizados',
-      'Integraciones avanzadas'
+      'Integraciones avanzadas',
     ],
     ctaText: 'Prueba 14 días gratis',
-    ctaHref: '#'
+    ctaHref: '#',
   },
   {
     name: 'Enterprise',
-    description: 'Soluciones personalizadas para grandes organizaciones con necesidades de marketing complejas.',
+    description:
+      'Soluciones personalizadas para grandes organizaciones con necesidades de marketing complejas.',
     monthlyPrice: 299,
     annualPrice: 239,
     features: [
@@ -49,11 +51,11 @@ const pricingTiers: PricingTier[] = [
       'Gestor de éxito dedicado',
       'Soporte telefónico 24/7',
       'SSO y seguridad avanzada',
-      'SLA personalizado'
+      'SLA personalizado',
     ],
     ctaText: 'Contactar Ventas',
-    ctaHref: '#'
-  }
+    ctaHref: '#',
+  },
 ];
 ---
 
@@ -62,12 +64,12 @@ const pricingTiers: PricingTier[] = [
   description="Precios simples y transparentes para equipos de todos los tamaños. Empieza gratis, actualiza cuando necesites funciones SEO avanzadas."
 >
   <Header slot="header" />
-  
-  <PricingTable 
-    client:load 
-    title="Precios simples y transparentes" 
+
+  <PricingTable
+    client:load
+    title="Precios simples y transparentes"
     subtitle="Sin costes ocultos. Sin cargos sorpresa. Cancela en cualquier momento."
-    tiers={pricingTiers} 
+    tiers={pricingTiers}
   />
 
   <Footer slot="footer" />

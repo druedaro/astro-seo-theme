@@ -16,10 +16,10 @@ const pricingTiers: PricingTier[] = [
       'Basic SEO analytics',
       '1,000 AI generations/month',
       'Community support',
-      'Standard integrations'
+      'Standard integrations',
     ],
     ctaText: 'Start for free',
-    ctaHref: '#'
+    ctaHref: '#',
   },
   {
     name: 'Pro',
@@ -33,10 +33,10 @@ const pricingTiers: PricingTier[] = [
       '10,000 AI generations/month',
       'Priority email support',
       'Custom domains',
-      'Advanced integrations'
+      'Advanced integrations',
     ],
     ctaText: 'Start 14-day trial',
-    ctaHref: '#'
+    ctaHref: '#',
   },
   {
     name: 'Enterprise',
@@ -49,11 +49,11 @@ const pricingTiers: PricingTier[] = [
       'Dedicated success manager',
       '24/7 phone support',
       'SSO & advanced security',
-      'Custom SLA'
+      'Custom SLA',
     ],
     ctaText: 'Contact Sales',
-    ctaHref: '#'
-  }
+    ctaHref: '#',
+  },
 ];
 ---
 
@@ -62,12 +62,12 @@ const pricingTiers: PricingTier[] = [
   description="Simple, transparent pricing for teams of all sizes. Start for free, upgrade when you need advanced SEO features."
 >
   <Header slot="header" />
-  
-  <PricingTable 
-    client:load 
-    title="Simple, transparent pricing" 
+
+  <PricingTable
+    client:load
+    title="Simple, transparent pricing"
     subtitle="No hidden fees. No surprise charges. Cancel anytime."
-    tiers={pricingTiers} 
+    tiers={pricingTiers}
   />
 
   <Footer slot="footer" />

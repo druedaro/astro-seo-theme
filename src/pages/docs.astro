@@ -4,12 +4,12 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 ---
 
-<BaseLayout 
-  title="Documentation" 
+<BaseLayout
+  title="Documentation"
   description="Learn how to configure, customize, and deploy the Astro SEO Theme."
 >
   <Header slot="header" />
-  
+
   <main class="mx-auto max-w-4xl px-6 py-20 md:py-32">
     <header class="text-center md:mb-16">
       <h1 class="font-display text-4xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-5xl">
@@ -23,7 +23,15 @@ import Footer from '../components/layout/Footer.astro';
     <div class="prose prose-zinc prose-lg mx-auto dark:prose-invert">
       <h2>Getting Started</h2>
       <p>
-        Currently, the full documentation is hosted on our <a href="https://github.com/druedaro/astro-seo-theme" target="_blank" rel="noopener noreferrer">GitHub repository</a>. You'll find instructions on:
+        Currently, the full documentation is hosted on our{' '}
+        <a
+          href="https://github.com/druedaro/astro-seo-theme"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub repository
+        </a>
+        . You'll find instructions on:
       </p>
       <ul>
         <li>Installation and setup</li>
@@ -31,10 +39,18 @@ import Footer from '../components/layout/Footer.astro';
         <li>Adding content to the Blog and Case Studies</li>
         <li>Deploying to Vercel, Netlify, or Cloudflare</li>
       </ul>
-      
+
       <h2>Need Help?</h2>
       <p>
-        If you find a bug or have a feature request, please <a href="https://github.com/druedaro/astro-seo-theme/issues" target="_blank" rel="noopener noreferrer">open an issue on GitHub</a>.
+        If you find a bug or have a feature request, please{' '}
+        <a
+          href="https://github.com/druedaro/astro-seo-theme/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          open an issue on GitHub
+        </a>
+        .
       </p>
     </div>
   </main>

@@ -6,7 +6,7 @@ import { glob, file } from 'astro/loaders';
  * Posts in MDX with full SEO frontmatter for GEO/AEO optimization.
  */
 const blog = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -29,7 +29,7 @@ const blog = defineCollection({
  * B2B success stories with structured data for rich results.
  */
 const caseStudies = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/case-studies" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/case-studies' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -39,13 +39,15 @@ const caseStudies = defineCollection({
       heroImage: image().optional(),
       client: z.string(),
       industry: z.string(),
-      results: z.array(
-        z.object({
-          metric: z.string(),
-          value: z.string(),
-          description: z.string().optional(),
-        })
-      ).optional(),
+      results: z
+        .array(
+          z.object({
+            metric: z.string(),
+            value: z.string(),
+            description: z.string().optional(),
+          })
+        )
+        .optional(),
       testimonial: z
         .object({
           quote: z.string(),
@@ -64,7 +66,7 @@ const caseStudies = defineCollection({
  * Author profiles for E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness).
  */
 const authors = defineCollection({
-  loader: glob({ pattern: "**/*.json", base: "./src/content/authors" }),
+  loader: glob({ pattern: '**/*.json', base: './src/content/authors' }),
   schema: ({ image }) =>
     z.object({
       name: z.string(),
