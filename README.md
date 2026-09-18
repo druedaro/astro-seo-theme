@@ -20,92 +20,196 @@
 
 ---
 
-## 🚀 Overview
+Astro SEO Theme is an open-source website template built with [Astro](https://astro.build/), [Tailwind CSS v4](https://tailwindcss.com/), and [React](https://react.dev/). You get a highly-optimized landing page, dynamic blog, case studies section, and enterprise-grade SEO tooling in one repo. It's designed so you can launch a premium web presence for a B2B SaaS or startup just by editing content, instead of wrestling with Core Web Vitals from scratch. Unlike generic themes, it ships with an incredibly strict SEO setup, multilingual i18n, security headers, and CI pipelines already wired up.
 
-Astro SEO Theme is a production-ready, highly optimized website template built with **Astro**, **Tailwind CSS v4**, and **React**. It is designed specifically for B2B SaaS companies, startups, and enterprises that demand the highest standards of technical SEO out of the box.
+Live demo: [astro-seo-theme.vercel.app](https://astro-seo-theme.vercel.app/)
 
-Unlike generic themes, this template is built with a "Zero-JS by default" architecture (Astro Islands), ensuring a **100/100 Lighthouse score** without sacrificing modern aesthetics.
+- **Three content hubs in one.** High-converting landing page, markdown-driven blog, and case studies portfolio, all sharing a single responsive layout and megamenu.
+- **Enterprise-grade SEO.** Centralized `hreflang` generation, JSON-LD structured data, auto-generated sitemaps, and `robots.txt`. Built-in support for GEO (Generative Engine Optimization).
+- **100/100 Lighthouse Performance.** "Zero-JS by default" architecture using Astro Islands. Ships 0 KB of JavaScript to the client unless absolutely necessary (like the React-based dark mode toggle).
+- **Multilingual out of the box.** Complete English and Spanish implementations included. File-based routing makes it trivial to add more languages.
+- **Production-hardened.** Strict Content Security Policy (CSP) and security headers via `vercel.json`, GitHub Actions CI pipeline for type-checking and automated dependabot updates.
+- **Modern stack.** Astro 5, Tailwind CSS 4, React 19, TypeScript. 
+- **AI-assistant friendly.** [`AI_GUIDE.md`](AI_GUIDE.md) tells Cursor, Copilot, and Claude where things live and which conventions to follow so you can prompt your way to a customized site.
+- **MIT licensed.** 100% free to use for personal and commercial projects.
 
-### ✨ Key Features
+Pages are composed using semantic Astro components and native CSS grid/flexbox:
 
-- **100/100 Lighthouse Performance**: Ships 0 KB of JavaScript to the client by default.
-- **Advanced Technical SEO**: Centralized metadata, JSON-LD structured data, auto-generated sitemap, and `robots.txt`.
-- **Native i18n**: Out-of-the-box multilingual support (English and Spanish) with automatically generated `hreflang` and `canonical` tags following Google's best practices.
-- **Enterprise Megamenu**: CSS-only desktop hover megamenu and mobile accordion navigation.
-- **Production-Hardened**: Pre-configured CI/CD (GitHub Actions), Dependabot, and Strict Security Headers via `vercel.json`.
-- **Developer Experience**: TypeScript ready, heavily commented code, and an [AI Guide](AI_GUIDE.md) to help you customize the theme using Cursor or Copilot.
+```astro
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HeroSection from '@/components/marketing/HeroSection.astro';
+---
+
+<BaseLayout
+  title="Home"
+  description="The best SaaS product ever."
+>
+  <HeroSection />
+  <!-- Other components... -->
+</BaseLayout>
+```
 
 ---
 
-## 📦 Getting Started
+## Table of Contents
 
-You will need **Node.js 18+** and **npm/pnpm/yarn**.
+- [Getting Started](#getting-started)
+- [Make It Yours](#make-it-yours)
+  - [Site name and SEO](#site-name-and-seo)
+  - [Navigation and Megamenu](#navigation-and-megamenu)
+  - [Pages and sections](#pages-and-sections)
+  - [Blog and Case Studies](#blog-and-case-studies)
+  - [Languages (i18n)](#languages-i18n)
+- [Deployment](#deployment)
+- [Project Structure](#project-structure)
+- [Under the Hood](#under-the-hood)
+  - [SEO and structured data](#seo-and-structured-data)
+  - [robots.txt and sitemap](#robotstxt-and-sitemap)
+  - [Security headers](#security-headers)
+- [Contributing](#contributing)
+- [License](#license)
 
-### 1. Clone the repository
+---
 
-Click **Use this template** at the top of the GitHub page, or clone it directly:
+## Getting Started
+
+You need **Node.js 18+** and **npm** (or pnpm/yarn).
+
+**1. Create your repo.** Click **Use this template** at the top of the GitHub page, or clone directly:
 
 ```bash
 git clone https://github.com/druedaro/astro-seo-theme.git my-saas-website
 cd my-saas-website
 ```
 
-### 2. Install dependencies
+**2. Install dependencies:**
 
 ```bash
 npm install
 ```
 
-### 3. Start the development server
+**3. Start the dev server:**
 
 ```bash
 npm run dev
 ```
 
-Open `http://localhost:4321` in your browser. Edits will hot-reload automatically.
+Open [http://localhost:4321](http://localhost:4321). Edits to any file reload the page instantly.
+
+**4. Build for production:**
+
+```bash
+npm run build
+```
+
+This builds the site into `dist/`. Preview the result with `npm run preview`.
+
+> **Tip**
+> Only need one language? Simply delete the `src/pages/es` folder and remove the language picker from the Header component.
 
 ---
 
-## 🛠️ Configuration
+## Make It Yours
 
-Make this theme your own by editing the core configurations.
+### Site name and SEO
 
-### SEO & Global Constants
-All global data (Site name, default SEO tags) is managed in `src/layouts/BaseLayout.astro` and `src/i18n/ui.ts`. 
+Everything site-wide lives in `src/layouts/BaseLayout.astro` and `src/i18n/ui.ts`. The default `siteName` is injected automatically into titles and metadata. 
 
-### Internationalization (i18n)
-Translations are located in `src/i18n/ui.ts`. The routing is file-based:
-- English pages (Default): `src/pages/*.astro`
-- Spanish pages: `src/pages/es/*.astro`
+Change the `site` property in `astro.config.mjs` so the sitemap and `robots.txt` point at your actual production domain.
 
-### Navigation (Megamenu)
-Edit the `navItems` array inside `src/components/layout/Header.astro` to add, remove, or modify the links and dropdown panels.
+### Navigation and Megamenu
+
+Edit `src/components/layout/Header.astro` to modify the navigation. The theme includes a robust, CSS-only desktop megamenu and a mobile accordion menu built without heavy client-side JavaScript.
+
+### Pages and sections
+
+Pages in `src/pages/` compose sections from `src/components/marketing/` and `src/components/seo/`. Open `src/pages/index.astro` to see the full homepage, then edit the props or remove sections you don't need. 
+
+### Blog and Case Studies
+
+Content is Markdown/MDX in `src/content/blog/` and `src/content/case-studies/`. Schemas are defined in `src/content.config.ts`. A case study looks like this:
+
+```mdx
+---
+title: "How TechCorp Scaled with Us"
+description: "A deep dive into B2B growth."
+client: "TechCorp"
+date: 2026-09-15
+---
+
+Case study body here.
+```
+
+### Languages (i18n)
+
+Marketing pages are file-based: `src/pages/` for English, `src/pages/es/` for Spanish. A `LanguagePicker` component in the Header switches between them. UI strings are centralized in `src/i18n/ui.ts`. `BaseLayout` automatically handles `hreflang` tag generation to prevent duplicate content penalties across languages.
 
 ---
 
-## 🚢 Deployment
+## Deployment
 
-This theme is ready to be deployed to **Vercel**, **Netlify**, or **Cloudflare Pages**. 
-A `vercel.json` file is already included with strict security headers (Content Security Policy, HSTS, X-Frame-Options) for enterprise-grade security.
+`npm run build` produces a static site in `dist/` that any static host can serve.
 
-To deploy on Vercel:
-1. Push your code to GitHub.
-2. Import the repository in the Vercel Dashboard.
-3. Vercel will automatically detect Astro and build the site.
+- **Vercel:** Import the project directly. The included `vercel.json` adds strict security headers and caching rules.
+- **Netlify / Cloudflare Pages:** Works out of the box with zero configuration required.
 
 ---
 
-## 🤝 Contributing
+## Project Structure
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) for details on how to get started.
+```text
+src/
+├── components/
+│   ├── layout/             # Header, Footer, megamenu
+│   ├── marketing/          # Hero, BentoGrid, PricingTable
+│   ├── seo/                # Breadcrumbs, JsonLd, FaqSchema
+│   └── ui/                 # LanguagePicker, DarkModeToggle
+├── content/
+│   ├── blog/               # Markdown posts
+│   └── case-studies/       # Markdown case studies
+├── i18n/                   # ui.ts (translations), utils.ts
+├── layouts/                # BaseLayout.astro (Global Meta/SEO)
+├── pages/                  # File-based routes; es/ for Spanish
+│   ├── index.astro         # English Home
+│   ├── blog/               
+│   ├── es/                 # Spanish routes
+│   └── rss.xml.js          
+└── styles/
+    └── global.css          # Tailwind v4 theme and typography vars
+```
 
 ---
 
-## 📄 License
+## Under the Hood
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### SEO and structured data
+
+`BaseLayout.astro` is the brain of the theme. It accepts `title`, `description`, `image`, and `articleDate` props. It automatically generates canonical URLs, Open Graph tags, Twitter cards, and `hreflang` alternate links. 
+
+For structured data, the theme uses `src/components/seo/JsonLd.astro` and `FaqSchema.astro` to inject `<script type="application/ld+json">` payloads, crucial for Generative Engine Optimization (GEO).
+
+### robots.txt and sitemap
+
+The `@astrojs/sitemap` integration generates the sitemap automatically at build time. `robots.txt` is served statically from the `public/` directory.
+
+### Security headers
+
+`vercel.json` sets `Content-Security-Policy`, `Strict-Transport-Security`, `X-Content-Type-Options`, and `X-Frame-Options` to ensure the site gets an A+ on security scanners like Mozilla Observatory.
 
 ---
+
+## Contributing
+
+- **Bugs and ideas:** open an issue.
+- **Pull requests:** welcome. 
+
+See `CODE_OF_CONDUCT.md` and `CONTRIBUTING.md`.
+
+## License
+
+MIT. See `LICENSE`.
+
 <div align="center">
-  Crafted by <a href="https://davidrueda.vercel.app/">druedaro</a>.
+  Crafted by <a href="https://github.com/druedaro">druedaro</a>.
 </div>
