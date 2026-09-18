@@ -51,25 +51,25 @@ import HeroSection from '@/components/marketing/HeroSection.astro';
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-- [Make It Yours](#make-it-yours)
-  - [Site name and SEO](#site-name-and-seo)
-  - [Navigation and Megamenu](#navigation-and-megamenu)
-  - [Pages and sections](#pages-and-sections)
-  - [Blog and Case Studies](#blog-and-case-studies)
-  - [Languages (i18n)](#languages-i18n)
-- [Deployment](#deployment)
-- [Project Structure](#project-structure)
-- [Under the Hood](#under-the-hood)
-  - [SEO and structured data](#seo-and-structured-data)
-  - [robots.txt and sitemap](#robotstxt-and-sitemap)
-  - [Security headers](#security-headers)
+- [Quick Start](#quick-start)
+- [Theme Configuration](#theme-configuration)
+  - [Global Meta Settings](#global-meta-settings)
+  - [Header & Megamenu](#header--megamenu)
+  - [Building Landing Pages](#building-landing-pages)
+  - [Managing Content Collections](#managing-content-collections)
+  - [Localization (i18n)](#localization-i18n)
+- [Deploying to Production](#deploying-to-production)
+- [Directory Layout](#directory-layout)
+- [Technical Highlights](#technical-highlights)
+  - [Generative Engine Optimization (GEO)](#generative-engine-optimization-geo)
+  - [Sitemap & Crawlability](#sitemap--crawlability)
+  - [Enterprise Security](#enterprise-security)
 - [Contributing](#contributing)
 - [License](#license)
 
 ---
 
-## Getting Started
+## Quick Start
 
 You need **Node.js 18+** and **npm** (or pnpm/yarn).
 
@@ -107,27 +107,27 @@ This builds the site into `dist/`. Preview the result with `npm run preview`.
 
 ---
 
-## Make It Yours
+## Theme Configuration
 
-### Site name and SEO
+### Global Meta Settings
 
 Everything site-wide lives in `src/layouts/BaseLayout.astro` and `src/i18n/ui.ts`. The default `siteName` is injected automatically into titles and metadata. 
 
 > [!IMPORTANT]
 > Change the `site` property in `astro.config.mjs` before going to production. If you skip this, your auto-generated sitemap and `robots.txt` will point to the wrong domain, which will severely hurt your SEO.
 
-### Navigation and Megamenu
+### Header & Megamenu
 
 Edit `src/components/layout/Header.astro` to modify the navigation. The theme includes a robust, CSS-only desktop megamenu and a mobile accordion menu built without heavy client-side JavaScript.
 
-<!-- RECOMENDACIÓN: Aquí es el lugar perfecto para colocar un GIF. Queda genial justo después de explicar el megamenú, tal y como hace ScrewFast -->
+<!-- RECOMENDACIÓN: Aquí es el lugar perfecto para colocar un GIF. Queda genial justo después de explicar el megamenú -->
 <!-- ![Astro SEO Theme Demo](public/demo.gif) -->
 
-### Pages and sections
+### Building Landing Pages
 
 Pages in `src/pages/` compose sections from `src/components/marketing/` and `src/components/seo/`. Open `src/pages/index.astro` to see the full homepage, then edit the props or remove sections you don't need.
 
-### Blog and Case Studies
+### Managing Content Collections
 
 Content is Markdown/MDX in `src/content/blog/` and `src/content/case-studies/`. Schemas are defined in `src/content.config.ts`. A case study looks like this:
 
@@ -142,13 +142,13 @@ date: 2026-09-15
 Case study body here.
 ```
 
-### Languages (i18n)
+### Localization (i18n)
 
 Marketing pages are file-based: `src/pages/` for English, `src/pages/es/` for Spanish. A `LanguagePicker` component in the Header switches between them. UI strings are centralized in `src/i18n/ui.ts`. `BaseLayout` automatically handles `hreflang` tag generation to prevent duplicate content penalties across languages.
 
 ---
 
-## Deployment
+## Deploying to Production
 
 `npm run build` produces a static site in `dist/` that any static host can serve.
 
@@ -160,7 +160,7 @@ Marketing pages are file-based: `src/pages/` for English, `src/pages/es/` for Sp
 
 ---
 
-## Project Structure
+## Directory Layout
 
 ```text
 src/
@@ -185,19 +185,19 @@ src/
 
 ---
 
-## Under the Hood
+## Technical Highlights
 
-### SEO and structured data
+### Generative Engine Optimization (GEO)
 
 `BaseLayout.astro` is the brain of the theme. It accepts `title`, `description`, `image`, and `articleDate` props. It automatically generates canonical URLs, Open Graph tags, Twitter cards, and `hreflang` alternate links.
 
 For structured data, the theme uses `src/components/seo/JsonLd.astro` and `FaqSchema.astro` to inject `<script type="application/ld+json">` payloads, crucial for Generative Engine Optimization (GEO).
 
-### robots.txt and sitemap
+### Sitemap & Crawlability
 
 The `@astrojs/sitemap` integration generates the sitemap automatically at build time. `robots.txt` is served statically from the `public/` directory.
 
-### Security headers
+### Enterprise Security
 
 `vercel.json` sets `Content-Security-Policy`, `Strict-Transport-Security`, `X-Content-Type-Options`, and `X-Frame-Options` to ensure the site gets an A+ on security scanners like Mozilla Observatory.
 
