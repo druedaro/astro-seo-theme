@@ -51,12 +51,18 @@ const siteUrl = Astro.site?.toString() ?? 'https://astro-seo-theme.vercel.app';
   />
 
   <LogoCloud
+    title="Con la confianza de equipos innovadores"
     logos={[
       {
         name: 'Vercel',
         src: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Vercel_logo_black.svg',
+        className: 'dark:invert',
       },
-      { name: 'Astro', src: 'https://astro.build/assets/press/full-logo-light.svg' },
+      { 
+        name: 'Astro', 
+        src: 'https://astro.build/assets/press/full-logo-light.svg',
+        className: 'invert dark:invert-0',
+      },
       {
         name: 'Tailwind',
         src: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg',

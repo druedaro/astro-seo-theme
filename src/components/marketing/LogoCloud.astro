@@ -9,6 +9,7 @@
 interface Logo {
   name: string;
   src: string;
+  className?: string;
 }
 
 interface Props {
@@ -30,7 +31,7 @@ const { title = 'Trusted by innovative teams worldwide', logos } = Astro.props;
           loading="lazy"
           width="120"
           height="40"
-          class="h-8 w-auto max-w-[120px] object-contain sm:h-10"
+          class={`h-8 w-auto max-w-[120px] object-contain sm:h-10 ${logo.className || ''}`}
         />
       ))}
     </div>
