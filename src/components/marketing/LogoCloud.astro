@@ -9,7 +9,7 @@
 interface Logo {
   name: string;
   src: string;
-  className?: string;
+  darkSrc?: string;
 }
 
 interface Props {
@@ -25,14 +25,26 @@ const { title = 'Trusted by innovative teams worldwide', logos } = Astro.props;
     <p class="text-sm font-semibold tracking-wide text-[var(--text-tertiary)] uppercase">{title}</p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 opacity-60 grayscale transition-all hover:grayscale-0 sm:gap-x-16">
       {logos.map((logo) => (
-        <img
-          src={logo.src}
-          alt={`${logo.name} logo`}
-          loading="lazy"
-          width="120"
-          height="40"
-          class={`h-8 w-auto max-w-[120px] object-contain sm:h-10 ${logo.className || ''}`}
-        />
+        <>
+          <img
+            src={logo.src}
+            alt={`${logo.name} logo`}
+            loading="lazy"
+            width="120"
+            height="40"
+            class={`h-8 w-auto max-w-[120px] object-contain sm:h-10 ${logo.darkSrc ? 'dark:hidden' : ''}`}
+          />
+          {logo.darkSrc && (
+            <img
+              src={logo.darkSrc}
+              alt={`${logo.name} logo (dark)`}
+              loading="lazy"
+              width="120"
+              height="40"
+              class="hidden h-8 w-auto max-w-[120px] object-contain sm:h-10 dark:block"
+            />
+          )}
+        </>
       ))}
     </div>
   </div>
