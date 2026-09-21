@@ -8,7 +8,7 @@ import LogoCloud from '../../components/marketing/LogoCloud.astro';
 import BentoGrid from '../../components/marketing/BentoGrid.astro';
 import FaqAccordion from '../../components/marketing/FaqAccordion.astro';
 
-const siteUrl = Astro.site?.toString() ?? 'https://astro-seo-theme.vercel.app';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://astro-seo-theme.vercel.app';
 ---
 
 <BaseLayout

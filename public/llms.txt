@@ -13,5 +13,5 @@ Astro SEO Theme is an open-source website template built with Astro, Tailwind CS
 - Native multi-language (i18n) support with automatic `hreflang` tag generation.
 
 ## Resources
-- GitHub Repository: https://github.com/druedaro/astro-seo-theme
-- Live Demo: https://astro-seo-theme.vercel.app
+- [GitHub Repository](https://github.com/druedaro/astro-seo-theme)
+- [Live Demo](https://astro-seo-theme.vercel.app)
