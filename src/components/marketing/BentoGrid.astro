@@ -46,7 +46,7 @@ const { title, subtitle, items } = Astro.props;
           <div class="relative z-10">
             {item.icon && (
               <div
-                class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary-100)] text-[var(--color-primary-600)] dark:bg-[var(--color-primary-900)] dark:text-[var(--color-primary-300)]"
+                class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary-50)] text-[var(--color-primary-500)] dark:bg-[var(--color-primary-500)]/10 dark:text-[var(--color-primary-400)]"
                 set:html={item.icon}
               />
             )}
