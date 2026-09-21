@@ -120,8 +120,7 @@ Everything site-wide lives in `src/layouts/BaseLayout.astro` and `src/i18n/ui.ts
 
 Edit `src/components/layout/Header.astro` to modify the navigation. The theme includes a robust, CSS-only desktop megamenu and a mobile accordion menu built without heavy client-side JavaScript.
 
-<!-- RECOMENDACIÓN: Aquí es el lugar perfecto para colocar un GIF. Queda genial justo después de explicar el megamenú -->
-<!-- ![Astro SEO Theme Demo](public/demo.gif) -->
+<img width="1280" height="717" alt="AstroSEO" src="https://github.com/user-attachments/assets/1ef5f911-d08e-4dc0-95ed-89195c5730a4" />
 
 ### Building Landing Pages
 
