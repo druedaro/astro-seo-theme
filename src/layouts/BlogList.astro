@@ -37,11 +37,11 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
             <time datetime={post.data.pubDate.toISOString()} class="text-[var(--text-tertiary)]">
               {dateFormatter.format(post.data.pubDate)}
             </time>
-            {post.data.tags && post.data.tags[0] && (
-              <span class="relative z-10 rounded-full bg-[var(--color-primary-50)] px-3 py-1.5 font-medium text-[var(--color-primary-700)] dark:bg-[var(--color-primary-900)] dark:text-[var(--color-primary-300)]">
-                {post.data.tags[0]}
+            {post.data.tags.map((tag) => (
+              <span class="relative z-10 rounded-full bg-[var(--color-primary-50)] px-3 py-1.5 font-medium text-[var(--color-primary-500)] dark:bg-[var(--color-primary-500)]/10 dark:text-[var(--color-primary-400)]">
+                {tag}
               </span>
-            )}
+            ))}
           </div>
 
           <div class="group relative">
