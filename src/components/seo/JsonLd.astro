@@ -179,4 +179,4 @@ function buildSchema(type: SchemaType, data: any): Record<string, unknown> {
 const schema = buildSchema(type, data);
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema, null, 2)}></script>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema, null, 2)}></script>
