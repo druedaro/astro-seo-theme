@@ -5,6 +5,11 @@
  * Ready for Web3Forms or Formspree. Just add your access key.
  */
 
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 // Example: Web3Forms access key
 const ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
 ---
@@ -17,24 +22,26 @@ const ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
   <div class="grid gap-6 sm:grid-cols-2">
     <div class="space-y-2">
       <label for="first-name" class="block text-sm font-medium text-[var(--text-primary)]">
-        First name
+        {t('contact.firstName')}
       </label>
       <input
         type="text"
         name="first-name"
         id="first-name"
+        autocomplete="given-name"
         required
         class="block w-full rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--color-primary-500)] focus:ring-1 focus:ring-[var(--color-primary-500)] focus:outline-none transition-colors"
       />
     </div>
     <div class="space-y-2">
       <label for="last-name" class="block text-sm font-medium text-[var(--text-primary)]">
-        Last name
+        {t('contact.lastName')}
       </label>
       <input
         type="text"
         name="last-name"
         id="last-name"
+        autocomplete="family-name"
         required
         class="block w-full rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--color-primary-500)] focus:ring-1 focus:ring-[var(--color-primary-500)] focus:outline-none transition-colors"
       />
@@ -43,12 +50,13 @@ const ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
 
   <div class="space-y-2">
     <label for="email" class="block text-sm font-medium text-[var(--text-primary)]">
-      Company email
+      {t('contact.email')}
     </label>
     <input
       type="email"
       name="email"
       id="email"
+      autocomplete="email"
       required
       class="block w-full rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--color-primary-500)] focus:ring-1 focus:ring-[var(--color-primary-500)] focus:outline-none transition-colors"
     />
@@ -56,7 +64,7 @@ const ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
 
   <div class="space-y-2">
     <label for="message" class="block text-sm font-medium text-[var(--text-primary)]">
-      How can we help?
+      {t('contact.message')}
     </label>
     <textarea
       id="message"
@@ -69,8 +77,8 @@ const ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
 
   <button
     type="submit"
-    class="w-full rounded-lg bg-[var(--color-primary-600)] px-6 py-3.5 text-center font-semibold text-white transition-colors hover:bg-[var(--color-primary-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-600)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+    class="w-full rounded-lg bg-[var(--color-primary-600)] px-6 py-3.5 text-center font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[var(--color-primary-700)] hover:shadow-md active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-600)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
   >
-    Send Message
+    {t('contact.submit')}
   </button>
 </form>
