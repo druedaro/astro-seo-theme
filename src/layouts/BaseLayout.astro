@@ -117,7 +117,7 @@ const alternateLocales = getAlternateLocales(Astro.url.pathname);
     <!-- Slot for page-specific head content (JSON-LD, hreflang, etc.) -->
     <slot name="head" />
   </head>
-  <body class="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] antialiased transition-colors duration-200">
+  <body class="min-h-screen overflow-x-hidden bg-[var(--bg)] text-[var(--text-primary)] antialiased transition-colors duration-200">
     <!-- Skip to main content (a11y) -->
     <a
       href="#main-content"

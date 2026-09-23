@@ -40,37 +40,34 @@ export default function PricingTable({ title, subtitle, tiers }: Props) {
           {subtitle && <p className="mt-4 text-lg text-[var(--text-secondary)]">{subtitle}</p>}
 
           {/* Billing Toggle */}
-          <div className="mt-10 flex items-center justify-center gap-3">
-            <span
-              className={`text-sm font-semibold transition-colors ${
-                !isAnnual ? 'text-[var(--text-primary)]' : 'text-[var(--text-tertiary)]'
+          <div className="mt-10 mx-auto inline-flex flex-col sm:flex-row items-center rounded-3xl sm:rounded-full bg-[var(--bg-secondary)] p-1.5 shadow-inner border border-[var(--border)] gap-1">
+            <button
+              onClick={() => setIsAnnual(false)}
+              className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] ${
+                !isAnnual 
+                  ? 'bg-[var(--color-primary-600)] text-white shadow-md' 
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
               Monthly
-            </span>
-            <button
-              onClick={() => setIsAnnual(!isAnnual)}
-              role="switch"
-              aria-checked={isAnnual}
-              className="relative inline-flex h-6 w-11 items-center rounded-full bg-[var(--color-primary-500)] transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] focus-visible:outline-none"
-            >
-              <span className="sr-only">Toggle annual billing</span>
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  isAnnual ? 'translate-x-6' : 'translate-x-1'
-                }`}
-              />
             </button>
-            <span
-              className={`flex items-center gap-1.5 text-sm font-semibold transition-colors ${
-                isAnnual ? 'text-[var(--text-primary)]' : 'text-[var(--text-tertiary)]'
+            <button
+              onClick={() => setIsAnnual(true)}
+              className={`flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] ${
+                isAnnual 
+                  ? 'bg-[var(--color-primary-600)] text-white shadow-md' 
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
               Annually
-              <span className="inline-block rounded-full bg-[var(--color-primary-100)] px-2 py-0.5 text-xs font-semibold text-[var(--color-primary-700)] dark:bg-[var(--color-primary-900)] dark:text-[var(--color-primary-300)]">
+              <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-bold tracking-wide transition-colors ${
+                isAnnual 
+                  ? 'bg-white/25 text-white' 
+                  : 'bg-[var(--color-primary-100)] text-[var(--color-primary-700)] dark:bg-[var(--color-primary-900)] dark:text-[var(--color-primary-300)]'
+              }`}>
                 Save 20%
               </span>
-            </span>
+            </button>
           </div>
         </div>
 
