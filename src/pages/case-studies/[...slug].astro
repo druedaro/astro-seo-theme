@@ -4,8 +4,9 @@ import CaseStudy from '../../layouts/CaseStudy.astro';
 
 export async function getStaticPaths() {
   const caseStudies = await getCollection('case-studies');
-  return caseStudies.map((caseStudy) => ({
-    params: { slug: caseStudy.id },
+  const enStudies = caseStudies.filter(study => study.id.startsWith('en/'));
+  return enStudies.map((caseStudy) => ({
+    params: { slug: caseStudy.id.replace('en/', '') },
     props: { caseStudy },
   }));
 }
