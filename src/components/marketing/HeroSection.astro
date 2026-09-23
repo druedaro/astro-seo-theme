@@ -17,8 +17,10 @@ interface Props {
   description: string;
   primaryCtaText: string;
   primaryCtaHref: string;
+  primaryCtaAriaLabel?: string;
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
+  secondaryCtaAriaLabel?: string;
 }
 
 const {
@@ -29,8 +31,10 @@ const {
   description,
   primaryCtaText,
   primaryCtaHref,
+  primaryCtaAriaLabel,
   secondaryCtaText,
   secondaryCtaHref,
+  secondaryCtaAriaLabel,
 } = Astro.props;
 ---
 
@@ -57,6 +61,7 @@ const {
   <div class="mt-10 flex flex-col gap-4 sm:flex-row">
     <a
       href={primaryCtaHref}
+      aria-label={primaryCtaAriaLabel || primaryCtaText}
       class="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary-600)] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[var(--color-primary-600)]/25 transition-all hover:bg-[var(--color-primary-700)] hover:shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--color-primary-600)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
     >
       {primaryCtaText}
@@ -75,6 +80,7 @@ const {
     {secondaryCtaText && secondaryCtaHref && (
       <a
         href={secondaryCtaHref}
+        aria-label={secondaryCtaAriaLabel || secondaryCtaText}
         class="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] px-8 py-3.5 text-sm font-semibold text-[var(--text-primary)] transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-secondary)] focus-visible:ring-2 focus-visible:ring-[var(--border)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
       >
         {secondaryCtaText}
