@@ -7,6 +7,8 @@ import Footer from '../components/layout/Footer.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 
+import { getLangFromUrl } from '../../i18n/utils';
+
 interface Props {
   post: CollectionEntry<'blog'>;
 }
@@ -15,8 +17,14 @@ const { post } = Astro.props;
 const { title, description, pubDate, updatedDate, heroImage, tags, noindex, canonicalUrl } =
   post.data;
 
+const lang = getLangFromUrl(Astro.url);
+
 // Fetch author data for E-E-A-T and Schema
-const author = await getEntry('authors', post.data.author);
+let author = await getEntry('authors', `${lang}/${post.data.author}` as any);
+if (!author) {
+  // Fallback to English if translation is missing
+  author = await getEntry('authors', `en/${post.data.author}` as any);
+}
 const authorName = author ? author.data.name : 'Astro SEO Theme';
 const authorRole = author ? author.data.role : 'Editorial Team';
 
