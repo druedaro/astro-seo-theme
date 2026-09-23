@@ -109,11 +109,12 @@ const navItems = [
               class="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)] focus:outline-none"
               aria-haspopup="true"
               aria-expanded="false"
+              tabindex="0"
             >
               {item.label}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4 opacity-70 transition-transform group-hover:rotate-180"
+                class="h-4 w-4 opacity-70 transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -124,7 +125,7 @@ const navItems = [
                 />
               </svg>
             </button>
-            <div class="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 z-50">
+            <div class="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 z-50">
               <div class="w-80 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-3 shadow-xl ring-1 ring-black/5">
                 <div class="flex flex-col gap-1">
                   {item.dropdown.map((subItem) => (
