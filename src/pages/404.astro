@@ -11,6 +11,13 @@ import Footer from '../components/layout/Footer.astro';
 >
   <Header slot="header" />
 
+  <script>
+    // Client-side fallback for local development and SPA view transitions
+    if (window.location.pathname.startsWith('/es/')) {
+      window.location.replace('/es/404');
+    }
+  </script>
+
   <main class="flex min-h-[70vh] flex-col items-center justify-center px-6 text-center">
     <p class="font-display text-base font-semibold text-[var(--color-primary-500)]">404</p>
     <h1 class="mt-4 font-display text-4xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-5xl">
@@ -22,7 +29,7 @@ import Footer from '../components/layout/Footer.astro';
     <div class="mt-10">
       <a
         href="/"
-        class="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary-600)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[var(--color-primary-600)]/25 transition-all hover:bg-[var(--color-primary-700)] hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-600)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+        class="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary-600)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[var(--color-primary-600)]/25 transition-all hover:-translate-y-0.5 hover:bg-[var(--color-primary-700)] hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-600)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
