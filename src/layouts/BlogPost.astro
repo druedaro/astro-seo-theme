@@ -32,7 +32,7 @@ const siteUrl = Astro.site?.toString() ?? 'https://astro-seo-theme.vercel.app';
 const articleUrl = new URL(Astro.url.pathname, siteUrl).toString();
 
 // Formatter for dates
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
+const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -119,7 +119,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
           <p>
             <time datetime={pubDate.toISOString()}>{dateFormatter.format(pubDate)}</time>
             {updatedDate && (
-              <span class="italic"> (Updated: {dateFormatter.format(updatedDate)})</span>
+              <span class="italic"> ({lang === 'es' ? 'Actualizado:' : 'Updated:'} {dateFormatter.format(updatedDate)})</span>
             )}
           </p>
         </div>

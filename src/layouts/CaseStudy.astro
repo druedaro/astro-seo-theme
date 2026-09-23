@@ -26,12 +26,6 @@ const {
 
 const siteUrl = Astro.site?.toString() ?? 'https://astro-seo-theme.vercel.app';
 const articleUrl = new URL(Astro.url.pathname, siteUrl).toString();
-
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
 ---
 
 <BaseLayout
