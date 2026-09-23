@@ -53,9 +53,9 @@ export default function PricingTable({ title, subtitle, tiers }: Props) {
               role="switch"
               aria-checked={isAnnual}
               className={`relative inline-flex h-8 w-16 items-center rounded-full shadow-inner transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] focus-visible:outline-none ${
-                isAnnual 
-                  ? 'bg-[var(--color-primary-600)]' 
-                  : 'bg-[var(--bg-secondary)] border border-[var(--border)] brightness-90 dark:brightness-150'
+                isAnnual
+                  ? 'bg-[var(--color-primary-600)]'
+                  : 'border border-[var(--border)] bg-[var(--bg-secondary)] brightness-90 dark:brightness-150'
               }`}
             >
               <span className="sr-only">Toggle annual billing</span>
