@@ -41,7 +41,7 @@ export const ui = {
     'hero.titleHighlight': 'Your SaaS Deserves',
     'hero.description':
       'Advanced technical SEO, GEO & AEO optimization out of the box. Lighthouse 100/100. Built with Astro, Tailwind & React.',
-    'hero.primaryCta': 'Get Started',
+    'hero.primaryCta': 'Get Started on GitHub',
     'hero.secondaryCta': 'Read the Docs',
 
     // Bento Grid
@@ -116,7 +116,7 @@ export const ui = {
     'hero.titleHighlight': 'Que Tu SaaS Merece',
     'hero.description':
       'SEO técnico avanzado, optimización GEO y AEO incluidos. Lighthouse 100/100. Construido con Astro, Tailwind y React.',
-    'hero.primaryCta': 'Empezar',
+    'hero.primaryCta': 'Empezar en GitHub',
     'hero.secondaryCta': 'Leer la Documentación',
 
     // Bento Grid
