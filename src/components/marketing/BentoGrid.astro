@@ -36,7 +36,7 @@ const { title, subtitle, items } = Astro.props;
       {items.map((item) => (
         <div
           class:list={[
-            'group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-8 shadow-sm transition-all hover:shadow-md hover:border-[var(--border-hover)]',
+            'group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-8 transition-all hover:border-[var(--color-primary-500)]',
             item.colSpan === 2 && 'sm:col-span-2',
             item.rowSpan === 2 && 'sm:row-span-2',
           ]}

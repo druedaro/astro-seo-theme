@@ -17,7 +17,7 @@ const alternates = getAlternateLocales(Astro.url.pathname);
   </label>
   <select
     id="language-select"
-    class="appearance-none rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] px-2 py-1 pr-6 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] focus:border-[var(--color-primary-500)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary-500)] md:px-3 md:py-1.5 md:pr-8"
+    class="cursor-pointer appearance-none rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] px-2 py-1 pr-6 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] focus:border-[var(--color-primary-500)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary-500)] md:px-3 md:py-1.5 md:pr-8"
   >
     {alternates.map(({ lang, href }) => (
       <option value={href} selected={lang === currentLang}>

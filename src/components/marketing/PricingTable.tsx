@@ -52,7 +52,7 @@ export default function PricingTable({ title, subtitle, tiers }: Props) {
               onClick={() => setIsAnnual(!isAnnual)}
               role="switch"
               aria-checked={isAnnual}
-              className={`relative inline-flex h-8 w-16 items-center rounded-full shadow-inner transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] focus-visible:outline-none ${
+              className={`cursor-pointer relative inline-flex h-8 w-16 items-center rounded-full shadow-inner transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] focus-visible:outline-none ${
                 isAnnual 
                   ? 'bg-[var(--color-primary-600)] border border-transparent' 
                   : 'bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600'
