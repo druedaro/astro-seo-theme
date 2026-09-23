@@ -114,7 +114,7 @@ export default function PricingTable({ title, subtitle, tiers }: Props) {
 
                 <a
                   href={tier.ctaHref}
-                  className={`mt-auto inline-flex w-full justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-all hover:-translate-y-0.5 ${
+                  className={`mt-auto inline-flex w-full justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-all hover:-translate-y-0.5 active:scale-95 ${
                     tier.isPopular
                       ? 'bg-[var(--color-primary-500)] text-white shadow-[var(--color-primary-500)]/25 shadow-lg hover:bg-[var(--color-primary-600)] hover:shadow-xl'
                       : 'border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] shadow-sm hover:border-[var(--border-hover)] hover:bg-[var(--bg)] hover:shadow-md'
