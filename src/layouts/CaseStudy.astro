@@ -5,6 +5,7 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import { Image } from 'astro:assets';
 
 interface Props {
   caseStudy: CollectionEntry<'case-studies'>;
@@ -122,9 +123,11 @@ const articleUrl = new URL(Astro.url.pathname, siteUrl).toString();
         <footer class="mt-8">
           <div class="flex items-center justify-center gap-4">
             {testimonial.avatar && (
-              <img
-                src={testimonial.avatar.src}
+              <Image
+                src={testimonial.avatar}
                 alt={testimonial.author}
+                width={48}
+                height={48}
                 class="h-12 w-12 rounded-full border-2 border-[var(--color-primary-500)] object-cover"
               />
             )}

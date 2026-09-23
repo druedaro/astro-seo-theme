@@ -41,4 +41,14 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
   },
+
+  build: {
+    inlineStylesheets: 'always',
+  },
+
+  markdown: {
+    shikiConfig: {
+      theme: 'dracula',
+    },
+  },
 });

@@ -8,6 +8,7 @@ import JsonLd from '../components/seo/JsonLd.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 
 import { getLangFromUrl } from '../i18n/utils';
+import { Image } from 'astro:assets';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -94,7 +95,7 @@ const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-US',
 
       <div class="mb-4 flex flex-wrap justify-center gap-2">
         {tags.map((tag) => (
-          <span class="rounded-full bg-[var(--color-primary-50)] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--color-primary-500)] dark:bg-[var(--color-primary-500)]/10 dark:text-[var(--color-primary-400)]">
+          <span class="rounded-full bg-[var(--color-primary-50)] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--color-primary-700)] dark:bg-[var(--color-primary-500)]/10 dark:text-[var(--color-primary-300)]">
             {tag}
           </span>
         ))}
@@ -108,9 +109,11 @@ const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-US',
 
       <div class="mt-8 flex items-center justify-center gap-4 text-sm text-[var(--text-tertiary)]">
         {author && author.data.avatar && (
-          <img
-            src={author.data.avatar.src}
+          <Image
+            src={author.data.avatar}
             alt={authorName}
+            width={40}
+            height={40}
             class="h-10 w-10 rounded-full object-cover shadow-sm"
           />
         )}
@@ -128,8 +131,8 @@ const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-US',
 
     {heroImage && (
       <figure class="mb-12 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] shadow-sm">
-        <img
-          src={heroImage.src}
+        <Image
+          src={heroImage}
           alt={title}
           width={heroImage.width}
           height={heroImage.height}
@@ -148,15 +151,17 @@ const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-US',
       <aside class="mx-auto mt-16 max-w-2xl rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] p-8 shadow-sm">
         <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
           {author.data.avatar && (
-            <img
-              src={author.data.avatar.src}
+            <Image
+              src={author.data.avatar}
               alt={authorName}
+              width={80}
+              height={80}
               class="h-20 w-20 shrink-0 rounded-full object-cover ring-2 ring-[var(--border)]"
             />
           )}
           <div>
             <h3 class="text-lg font-bold text-[var(--text-primary)]">{authorName}</h3>
-            <p class="font-medium text-[var(--color-primary-500)]">{authorRole}</p>
+            <p class="font-medium text-[var(--color-primary-600)] dark:text-[var(--color-primary-400)]">{authorRole}</p>
             <p class="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
               {author.data.bio}
             </p>
