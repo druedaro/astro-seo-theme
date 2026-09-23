@@ -36,12 +36,11 @@ const { title, subtitle, items } = Astro.props;
       {items.map((item) => (
         <div
           class:list={[
-            'group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-8 transition-all hover:border-[var(--color-primary-500)]',
+            'group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-8 transition-all duration-300 hover:border-[var(--color-primary-500)] hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--color-primary-500)]/5 dark:hover:shadow-[var(--color-primary-500)]/10',
             item.colSpan === 2 && 'sm:col-span-2',
             item.rowSpan === 2 && 'sm:row-span-2',
           ]}
         >
-          <div class="absolute inset-0 bg-gradient-to-br from-[var(--color-primary-50)]/50 to-transparent opacity-0 transition-opacity group-hover:opacity-100 dark:from-[var(--color-primary-900)]/20"></div>
 
           <div class="relative z-10">
             {item.icon && (
