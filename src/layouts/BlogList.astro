@@ -48,12 +48,12 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
           </div>
 
           <div class="group relative">
-            <h3 class="mt-3 text-xl font-semibold leading-6 text-[var(--text-primary)] group-hover:text-[var(--text-secondary)]">
+            <h2 class="mt-3 text-xl font-semibold leading-6 text-[var(--text-primary)] group-hover:text-[var(--text-secondary)]">
               <a href={`${basePath}${post.id.replace(/^(en|es)\//, '')}`}>
                 <span class="absolute inset-0"></span>
                 {post.data.title}
               </a>
-            </h3>
+            </h2>
             <p class="mt-4 line-clamp-3 text-sm leading-6 text-[var(--text-secondary)]">
               {post.data.description}
             </p>
