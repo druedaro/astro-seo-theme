@@ -33,8 +33,9 @@ Live demo: [astro-seo-theme.vercel.app](https://astro-seo-theme.vercel.app/)
   <img src="public/lighthouse-score.jpg" alt="Perfect 100/100 Lighthouse Score for Mobile and Desktop" width="100%" />
   <br />
   <sub><em>Validated perfectly for Mobile & Desktop Performance, Accessibility, Best Practices, and SEO.</em></sub>
-  <br />
 </div>
+
+<br />
 
 - **Three content hubs in one.** High-converting landing page, markdown-driven blog, and case studies portfolio, all sharing a single responsive layout and megamenu.
 - **Enterprise-grade SEO.** Centralized `hreflang` generation, JSON-LD structured data, auto-generated sitemaps, and `robots.txt`. Built-in support for GEO (Generative Engine Optimization).
