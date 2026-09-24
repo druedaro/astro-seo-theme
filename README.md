@@ -11,6 +11,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
   <br />
+  [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdruedaro%2Fastro-seo-theme)
+  <br />
   <a href="https://astro-seo-theme.vercel.app">View Demo</a>
   ·
   <a href="https://github.com/druedaro/astro-seo-theme/issues">Report Bug</a>
@@ -80,10 +82,10 @@ import HeroSection from '@/components/marketing/HeroSection.astro';
 
 You need **Node.js 18+** and **npm** (or pnpm/yarn).
 
-**1. Create your repo.** Click **Use this template** at the top of the GitHub page, or clone directly:
+**1. Create your repo.** You can use the Astro CLI to scaffold a new project directly from this template:
 
 ```bash
-git clone https://github.com/druedaro/astro-seo-theme.git my-saas-website
+npm create astro@latest -- --template druedaro/astro-seo-theme my-saas-website
 cd my-saas-website
 ```
 
@@ -170,21 +172,25 @@ Marketing pages are file-based: `src/pages/` for English, `src/pages/es/` for Sp
 
 ```text
 src/
+├── assets/                 # Local images and fonts
 ├── components/
 │   ├── layout/             # Header, Footer, megamenu
-│   ├── marketing/          # Hero, BentoGrid, PricingTable
+│   ├── marketing/          # Hero, BentoGrid, PricingTable, ContactForm
 │   ├── seo/                # Breadcrumbs, JsonLd, FaqSchema
 │   └── ui/                 # LanguagePicker, DarkModeToggle
 ├── content/
-│   ├── blog/               # Markdown posts
-│   └── case-studies/       # Markdown case studies
-├── i18n/                   # ui.ts (translations), utils.ts
-├── layouts/                # BaseLayout.astro (Global Meta/SEO)
-├── pages/                  # File-based routes; es/ for Spanish
+│   ├── authors/            # JSON files for author profiles (E-E-A-T)
+│   ├── blog/               # MDX posts separated by language (en/ & es/)
+│   └── case-studies/       # MDX case studies separated by language (en/ & es/)
+├── i18n/                   # ui.ts (translations) & utils.ts
+├── layouts/                # BaseLayout.astro & specific page layouts
+├── pages/                  # File-based routes
 │   ├── index.astro         # English Home
-│   ├── blog/
-│   ├── es/                 # Spanish routes
-│   └── rss.xml.js
+│   ├── blog/               # English blog routes
+│   ├── case-studies/       # English case studies routes
+│   ├── es/                 # Spanish localized routes
+│   └── rss.xml.js          # RSS feed generator
+├── content.config.ts       # Astro Content Collections schemas
 └── styles/
     └── global.css          # Tailwind v4 theme and typography vars
 ```
