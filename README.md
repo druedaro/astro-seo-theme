@@ -11,7 +11,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
   <br />
-  [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdruedaro%2Fastro-seo-theme)
+  <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdruedaro%2Fastro-seo-theme">
+    <img src="https://vercel.com/button" alt="Deploy with Vercel" />
+  </a>
   <br />
   <a href="https://astro-seo-theme.vercel.app">View Demo</a>
   ·
@@ -31,6 +33,7 @@ Live demo: [astro-seo-theme.vercel.app](https://astro-seo-theme.vercel.app/)
   <img src="public/lighthouse-score.jpg" alt="Perfect 100/100 Lighthouse Score for Mobile and Desktop" width="100%" />
   <br />
   <sub><em>Validated perfectly for Mobile & Desktop Performance, Accessibility, Best Practices, and SEO.</em></sub>
+  <br />
 </div>
 
 - **Three content hubs in one.** High-converting landing page, markdown-driven blog, and case studies portfolio, all sharing a single responsive layout and megamenu.
