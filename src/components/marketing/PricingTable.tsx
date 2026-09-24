@@ -52,10 +52,10 @@ export default function PricingTable({ title, subtitle, tiers }: Props) {
               onClick={() => setIsAnnual(!isAnnual)}
               role="switch"
               aria-checked={isAnnual}
-              className={`cursor-pointer relative inline-flex h-8 w-16 items-center rounded-full shadow-inner transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] focus-visible:outline-none ${
-                isAnnual 
-                  ? 'bg-[var(--color-primary-600)] border border-transparent' 
-                  : 'bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600'
+              className={`relative inline-flex h-8 w-16 items-center rounded-full shadow-inner transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] focus-visible:outline-none ${
+                isAnnual
+                  ? 'bg-[var(--color-primary-600)]'
+                  : 'border border-[var(--border)] bg-[var(--bg-secondary)] brightness-90 dark:brightness-150'
               }`}
             >
               <span className="sr-only">Toggle annual billing</span>
@@ -95,7 +95,7 @@ export default function PricingTable({ title, subtitle, tiers }: Props) {
               >
                 {tier.isPopular && (
                   <div className="absolute -top-4 right-0 left-0 flex justify-center">
-                    <span className="rounded-full bg-[var(--color-primary-600)] px-4 py-1 text-xs font-semibold tracking-wider text-white uppercase">
+                    <span className="rounded-full bg-[var(--color-primary-500)] px-4 py-1 text-xs font-semibold tracking-wider text-white uppercase">
                       Most Popular
                     </span>
                   </div>
@@ -114,10 +114,10 @@ export default function PricingTable({ title, subtitle, tiers }: Props) {
 
                 <a
                   href={tier.ctaHref}
-                  className={`mt-auto inline-flex w-full justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-all hover:-translate-y-0.5 active:scale-95 ${
+                  className={`mt-auto inline-flex w-full justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
                     tier.isPopular
-                      ? 'bg-[var(--color-primary-600)] text-white shadow-[var(--color-primary-600)]/25 shadow-lg hover:bg-[var(--color-primary-700)] hover:shadow-xl'
-                      : 'border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] shadow-sm hover:border-[var(--border-hover)] hover:bg-[var(--bg)] hover:shadow-md'
+                      ? 'bg-[var(--color-primary-500)] text-white shadow-[var(--color-primary-500)]/25 shadow-lg hover:bg-[var(--color-primary-600)]'
+                      : 'border border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg)]'
                   }`}
                 >
                   {tier.ctaText}
