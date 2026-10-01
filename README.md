@@ -217,6 +217,21 @@ The `@astrojs/sitemap` integration generates the sitemap automatically at build 
 
 `vercel.json` sets `Content-Security-Policy`, `Strict-Transport-Security`, `X-Content-Type-Options`, and `X-Frame-Options` to ensure the site gets an A+ on security scanners like Mozilla Observatory.
 
+### Adding Analytics (Adjusting CSP)
+
+Because the default `Content-Security-Policy` (CSP) is strict, third-party scripts will be blocked by default. To add analytics like Google Analytics or Plausible, you must adjust the `Content-Security-Policy` header in `vercel.json` to allow those specific domains.
+
+**Example: Allowing Google Analytics**
+Modify the `script-src` and `connect-src` directives in `vercel.json`:
+```json
+"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com;"
+```
+
+**Example: Allowing Plausible**
+```json
+"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io; connect-src 'self' https://plausible.io;"
+```
+
 ### Formatting
 
 Code formatting is enforced using [Prettier](https://prettier.io/). The project includes `prettier-plugin-astro` and `prettier-plugin-tailwindcss` to automatically format `.astro` files and logically sort all Tailwind CSS classes.
