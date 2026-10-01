@@ -9,6 +9,7 @@
 [![Astro](https://img.shields.io/badge/Built_with-Astro-ff5a03?logo=astro&logoColor=white)](https://astro.build/)
 [![TailwindCSS](https://img.shields.io/badge/Styled_with-TailwindCSS_v4-38b2ac?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![GitHub stars](https://img.shields.io/github/stars/druedaro/astro-seo-theme.svg?style=social&label=Star)](https://github.com/druedaro/astro-seo-theme)
 
   <br />
   <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdruedaro%2Fastro-seo-theme">
@@ -216,6 +217,21 @@ The `@astrojs/sitemap` integration generates the sitemap automatically at build 
 ### Enterprise Security
 
 `vercel.json` sets `Content-Security-Policy`, `Strict-Transport-Security`, `X-Content-Type-Options`, and `X-Frame-Options` to ensure the site gets an A+ on security scanners like Mozilla Observatory.
+
+### Adding Analytics (Adjusting CSP)
+
+Because the default `Content-Security-Policy` (CSP) is strict, third-party scripts will be blocked by default. To add analytics like Google Analytics or Plausible, you must adjust the `Content-Security-Policy` header in `vercel.json` to allow those specific domains.
+
+**Example: Allowing Google Analytics**
+Modify the `script-src` and `connect-src` directives in `vercel.json`:
+```json
+"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com;"
+```
+
+**Example: Allowing Plausible**
+```json
+"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io; connect-src 'self' https://plausible.io;"
+```
 
 ### Formatting
 
