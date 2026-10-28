@@ -53,6 +53,7 @@ export const ui = {
     'faq.description': 'Everything you need to know about the product and billing.',
 
     // Footer
+    'footer.navigation': 'Footer navigation',
     'footer.product': 'Product',
     'footer.resources': 'Resources',
     'footer.company': 'Company',
@@ -128,6 +129,7 @@ export const ui = {
     'faq.description': 'Todo lo que necesitas saber sobre el producto y la facturación.',
 
     // Footer
+    'footer.navigation': 'Navegación del pie de página',
     'footer.product': 'Producto',
     'footer.resources': 'Recursos',
     'footer.company': 'Empresa',
