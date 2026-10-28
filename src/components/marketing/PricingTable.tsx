@@ -25,18 +25,21 @@ interface Props {
   title: string;
   subtitle?: string;
   tiers: PricingTier[];
+  titleAs?: 'h1' | 'h2';
 }
 
-export default function PricingTable({ title, subtitle, tiers }: Props) {
+export default function PricingTable({ title, subtitle, tiers, titleAs = 'h1' }: Props) {
   const [isAnnual, setIsAnnual] = useState(false);
+  const Heading = titleAs;
+  const TierHeading = titleAs === 'h1' ? 'h2' : 'h3';
 
   return (
     <section className="py-20 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl">
+          <Heading className="font-display text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl">
             {title}
-          </h2>
+          </Heading>
           {subtitle && <p className="mt-4 text-lg text-[var(--text-secondary)]">{subtitle}</p>}
 
           {/* Billing Toggle */}
@@ -101,7 +104,7 @@ export default function PricingTable({ title, subtitle, tiers }: Props) {
                   </div>
                 )}
 
-                <h3 className="text-xl font-semibold text-[var(--text-primary)]">{tier.name}</h3>
+                <TierHeading className="text-xl font-semibold text-[var(--text-primary)]">{tier.name}</TierHeading>
                 <p className="mt-2 text-sm text-[var(--text-secondary)]">{tier.description}</p>
 
                 <div className="my-6 flex items-baseline gap-1">
