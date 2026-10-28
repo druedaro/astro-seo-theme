@@ -27,13 +27,17 @@ const {
 
 const siteUrl = Astro.site?.toString() ?? 'https://astro-seo-theme.vercel.app';
 const articleUrl = new URL(Astro.url.pathname, siteUrl).toString();
+
+// Keep SEO title within recommended 60 chars
+const pageTitle = title.length > 40 ? title : `${client}: ${title}`;
 ---
 
 <BaseLayout
-  title={`${client} Case Study: ${title}`}
+  title={pageTitle}
   description={description}
   image={heroImage?.src}
   ogType="article"
+  appendSiteName={pageTitle.length + 18 <= 60}
 >
   <Fragment slot="head">
     <JsonLd

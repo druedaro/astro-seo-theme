@@ -224,11 +224,13 @@ Because the default `Content-Security-Policy` (CSP) is strict, third-party scrip
 
 **Example: Allowing Google Analytics**
 Modify the `script-src` and `connect-src` directives in `vercel.json`:
+
 ```json
 "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com;"
 ```
 
 **Example: Allowing Plausible**
+
 ```json
 "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io; connect-src 'self' https://plausible.io;"
 ```
