@@ -35,7 +35,10 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
       {posts.map((post) => (
         <article class="group relative flex flex-col items-start justify-between rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-6 shadow-sm transition-all hover:shadow-md hover:border-[var(--border-hover)]">
           <div class="mb-4 flex flex-wrap items-center gap-2 text-xs">
-            <time datetime={post.data.pubDate.toISOString()} class="text-[var(--text-tertiary)] whitespace-nowrap">
+            <time
+              datetime={post.data.pubDate.toISOString()}
+              class="text-[var(--text-tertiary)] whitespace-nowrap"
+            >
               {dateFormatter.format(post.data.pubDate)}
             </time>
             <div class="flex flex-wrap gap-2">

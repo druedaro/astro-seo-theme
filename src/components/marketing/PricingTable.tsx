@@ -104,7 +104,9 @@ export default function PricingTable({ title, subtitle, tiers, titleAs = 'h1' }:
                   </div>
                 )}
 
-                <TierHeading className="text-xl font-semibold text-[var(--text-primary)]">{tier.name}</TierHeading>
+                <TierHeading className="text-xl font-semibold text-[var(--text-primary)]">
+                  {tier.name}
+                </TierHeading>
                 <p className="mt-2 text-sm text-[var(--text-secondary)]">{tier.description}</p>
 
                 <div className="my-6 flex items-baseline gap-1">
